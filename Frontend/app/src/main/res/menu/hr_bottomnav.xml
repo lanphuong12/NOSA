@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/applicantmain"
+        android:title="Home"
+        android:icon="@drawable/home" />
+    <item
+        android:id="@+id/savedjob"
+        android:title="Job Manager"
+        android:icon="@drawable/list_job" />
+    <item
+        android:id="@+id/appliedcv"
+        android:title="Company Manager"
+        android:icon="@drawable/company" />
+    <item
+        android:id="@+id/receipt_Cv"
+        android:title="CV Manager"
+        android:icon="@drawable/receipt_cv" />
+</menu>

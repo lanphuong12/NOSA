@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/applicantmain"
+        android:title="home"
+        android:icon="@drawable/home" />
+    <item
+        android:id="@+id/savedjob"
+        android:title="Saved Job"
+        android:icon="@drawable/saved" />
+    <item
+        android:id="@+id/appliedcv"
+        android:title="Applied Job"
+        android:icon="@drawable/sent" />
+    <item
+        android:id="@+id/info"
+        android:title="Info"
+        android:icon="@drawable/person" />
+</menu>

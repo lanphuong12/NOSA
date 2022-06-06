@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Applicant.ChooseDanhmucnganhngheActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DANH MỤC NGÀNH NGHỀ"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hãy chọn ít nhất 3 ngành nghề bạn quan tâm"
+            android:textColor="#FF0000"
+            android:textSize="12sp"
+            android:textStyle="italic" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/danhmucnganhnghe_adapter"
+            android:id="@+id/lv_danhmucnganhnghe"/>
+    </LinearLayout>
+</RelativeLayout>

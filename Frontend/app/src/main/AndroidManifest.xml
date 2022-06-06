@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.myapplication" >
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        tools:targetApi="31" >
+        <activity
+            android:name=".JobApplied_adapter"
+            android:exported="false" />
+        <activity
+            android:name=".Applicant.SkillJob_adapter"
+            android:exported="false" />
+        <activity
+            android:name=".HR.HR_Add_Update_Company"
+            android:exported="false" />
+        <activity
+            android:name=".HR.HR_Add_Update_Job"
+            android:exported="false" />
+        <activity
+            android:name=".HR.HR_Company_detail"
+            android:exported="false" />
+        <activity
+            android:name=".HR.HR_JobDetail"
+            android:exported="false" />
+        <activity
+            android:name=".HR.InfoCandidateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Applicant.Apply_to_job"
+            android:exported="false" />
+        <activity
+            android:name=".Applicant.JobDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HR.HrHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Applicant.ApplicantHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Applicant.ChooseDanhmucnganhngheActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Applicant.UpdateInfoPersionalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResertPass.ResertpassEnternewpassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResertPass.ResertpassEnterotpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResertPass.ResertpassEnterphoneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".LoginActivity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
