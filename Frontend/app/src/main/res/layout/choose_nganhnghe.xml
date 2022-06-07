@@ -6,12 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="10dp"
-    tools:context=".Applicant.ChooseDanhmucnganhngheActivity">
+    android:padding="10dp">
 
     <ListView
-        android:id="@+id/lv_danhmucnganhnghe"
+        android:id="@+id/lv_nganhnghe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/nganhnghe_adapter" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/lv_nganhnghe"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_cancelngangnghe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button4"
+            android:text="Cancel" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_savengangnghe"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button4"
+            android:text="Save" />
+
+    </LinearLayout>
 </RelativeLayout>

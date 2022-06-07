@@ -1,5 +1,8 @@
 package com.example.myapplication.Server;
 
+import com.example.myapplication.Model.Danhmucnganhnghe;
+import com.example.myapplication.Model.Nganhnghe;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +18,12 @@ import retrofit2.http.Path;
 
 public interface Dataservice {
 
-//    @GET("books")
-//    Call<List<Book>> GetDataBook();
+    @GET("applicant/getalldanhmucnganhnghe")
+    Call<List<Danhmucnganhnghe>> GetAllDanhmucnganhnghe();
+
+    @FormUrlEncoded
+    @GET("applicant/getallnganhnghebtIdDMNN")
+    Call<List<Nganhnghe>> GetAllNganhngheByIDdanhmuc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
 //
 //    @GET("taikhoans")
 //    Call<List<User>> GetDataUser();

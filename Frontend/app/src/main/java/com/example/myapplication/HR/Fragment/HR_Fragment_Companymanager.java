@@ -1,4 +1,4 @@
-package com.example.myapplication.Applicant;
+package com.example.myapplication.HR.Fragment;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.example.myapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link JobDetail_Fragment_CompanyIn4#newInstance} factory method to
+ * Use the {@link HR_Fragment_Companymanager#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class JobDetail_Fragment_CompanyIn4 extends Fragment {
+public class HR_Fragment_Companymanager extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class JobDetail_Fragment_CompanyIn4 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public JobDetail_Fragment_CompanyIn4() {
+    public HR_Fragment_Companymanager() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class JobDetail_Fragment_CompanyIn4 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment JobDetail_Fragment_CompanyIn4.
+     * @return A new instance of fragment HR_Fragment_Companymanager.
      */
     // TODO: Rename and change types and number of parameters
-    public static JobDetail_Fragment_CompanyIn4 newInstance(String param1, String param2) {
-        JobDetail_Fragment_CompanyIn4 fragment = new JobDetail_Fragment_CompanyIn4();
+    public static HR_Fragment_Companymanager newInstance(String param1, String param2) {
+        HR_Fragment_Companymanager fragment = new HR_Fragment_Companymanager();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class JobDetail_Fragment_CompanyIn4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.job_detail_fragment_company_in4, container, false);
+        return inflater.inflate(R.layout.hr_fragment_companymanager, container, false);
     }
 }

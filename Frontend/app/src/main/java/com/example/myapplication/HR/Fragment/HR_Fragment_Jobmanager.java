@@ -1,4 +1,4 @@
-package com.example.myapplication.HR;
+package com.example.myapplication.HR.Fragment;
 
 import android.os.Bundle;
 

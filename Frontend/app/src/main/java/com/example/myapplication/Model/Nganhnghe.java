@@ -41,4 +41,9 @@ public class Nganhnghe implements Serializable {
     public void setTennganh(String tennganh) {
         this.tennganh = tennganh;
     }
+
+    @Override
+    public String toString() {
+        return (idNganh + " - " + tennganh);
+    }
 }

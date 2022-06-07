@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Applicant.JobDetail_Fragment_CompanyIn4">
+    tools:context=".Applicant.Fragment.JobDetail_Fragment_CompanyIn4">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout

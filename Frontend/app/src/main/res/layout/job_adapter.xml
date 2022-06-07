@@ -24,7 +24,7 @@
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:background="@drawable/nosa1"
+                    android:background="@drawable/NOSA1"
                     android:textSize="8pt" />
 
                 <TextView

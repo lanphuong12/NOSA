@@ -69,11 +69,19 @@ app.use(fileUpload({
 /*end server*/
 
 /*router*/
-const loginRouter = require('./Router/UserAccRouter')
+const accRouter = require('./Router/UserAccRouter')
 const applicantRouter = require('./Router/ApplicantRouter')
+const hrRouter = require('./Router/HRRouter')
+const jobRouter = require('./Router/JobRouter')
+const companyRouter = require('./Router/CompanyRouter')
+
 //create router with url api/teacher+ url in router file
-app.use('/api', loginRouter)
+app.use('/api', accRouter)
 app.use('/api/applicant', applicantRouter)
+app.use('/api/hr', hrRouter)
+app.use('/api/job', jobRouter)
+app.use('/api/company', companyRouter)
+
 server.server.listen(process.env.PORT||8000, () => {
 
     console.log("server and websocket listening on port 8000!");

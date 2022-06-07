@@ -15,7 +15,7 @@
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/checkbox_id"
+            android:id="@+id/checkbox_nganhnghe"
             android:text="CNTT - Lập trình mobile"/>
     </LinearLayout>
 

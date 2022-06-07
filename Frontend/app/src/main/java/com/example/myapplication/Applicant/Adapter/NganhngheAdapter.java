@@ -5,32 +5,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.example.myapplication.Model.Danhmucnganhnghe;
+import com.example.myapplication.Model.Nganhnghe;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
-public class DanhmucnganhngheAdapter extends BaseAdapter {
+public class NganhngheAdapter extends BaseAdapter {
 
-    ArrayList<Danhmucnganhnghe> arrayDanhmucnganhnghe;
+    ArrayList<Nganhnghe> arrayNganhnghe;
     Context context;
 
-    public DanhmucnganhngheAdapter(ArrayList<Danhmucnganhnghe> arrayDanhmucnganhnghe, Context context) {
-        this.arrayDanhmucnganhnghe = arrayDanhmucnganhnghe;
+    public NganhngheAdapter(ArrayList<Nganhnghe> arrayNganhnghe, Context context) {
+        this.arrayNganhnghe = arrayNganhnghe;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return arrayDanhmucnganhnghe.size();
+        return arrayNganhnghe.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return arrayDanhmucnganhnghe.get(position);
+        return arrayNganhnghe.get(position);
     }
 
     @Override
@@ -39,26 +39,26 @@ public class DanhmucnganhngheAdapter extends BaseAdapter {
     }
 
     public class ViewHolder{
-        TextView tendanhmuc ;
+        TextView tennganhnghe ;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
+        NganhngheAdapter.ViewHolder viewHolder = null;
         if (convertView == null){
-            viewHolder = new ViewHolder();
+            viewHolder = new NganhngheAdapter.ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.danhmucnganhnghe_adapter,null);
-            viewHolder.tendanhmuc = (TextView) convertView.findViewById(R.id.tv_danhmucnganhnghe);
+            viewHolder.tennganhnghe = (CheckBox) convertView.findViewById(R.id.checkbox_nganhnghe);
 
             convertView.setTag(viewHolder);
 
         }
         else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (NganhngheAdapter.ViewHolder) convertView.getTag();
         }
-        Danhmucnganhnghe sach = (Danhmucnganhnghe) getItem(position);
-        viewHolder.tendanhmuc.setText(sach.getTendanhmuc());
+        Nganhnghe sach = (Nganhnghe) getItem(position);
+        viewHolder.tennganhnghe.setText(sach.getTennganh());
         return convertView;
     }
 }

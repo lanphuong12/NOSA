@@ -7,14 +7,15 @@
     android:elevation="5dp"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
-    tools:context=".Applicant.SkillJob_adapter">
+    tools:context=".Applicant.Adapter.SkillJob_adapter">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="1dp"
         android:orientation="vertical">
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:textSize="12dp"
@@ -22,7 +23,7 @@
             android:text="Skills"
             android:textStyle="italic"
             android:textAllCaps="false"
-            android:id="@+id/bt_danhmucnganhnghe"/>
+            android:id="@+id/tv_skilljob"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

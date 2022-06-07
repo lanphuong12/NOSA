@@ -22,8 +22,78 @@ const GetAllnganhngheByIdDMNN = async (req, res) => {
 
 }
 
+const AddNganhnghequantam = async (req, res) => {
+
+}
+
+const AddExperience = async (req, res) => {
+
+}
+
+const UpdateExperience = async (req, res) => {
+
+}
+
+const DeleteExperience = async (req, res) => {
+
+}
+
+const AddSkill = async (req, res) => {
+
+}
+
+const UpdateSkill = async (req, res) => {
+
+}
+
+const DeleteSkill = async (req, res) => {
+
+}
+
+const GetJobtoApplicant = async (req, res) => {
+
+}
+
+const GetSavedJob = async (req, res) => {
+
+}
+
+const GetAppliedJob = async (req, res) => {
+
+}
+
+const GetAppliedJobByStatusReject = async (req, res) => {
+
+}
+
+const GetAppliedJobByStatusWaiting = async (req, res) => {
+
+}
+
+const GetAppliedJobByStatusApproved = async (req, res) => {
+
+}
+
+const GetAppliedJobByStatusConsider = async (req, res) => {
+
+}
 
 module.exports = {
     GetAllDanhmucnganhnghe,
-    GetAllnganhngheByIdDMNN
+    GetAllnganhngheByIdDMNN,
+    AddNganhnghequantam,
+    AddExperience,
+    UpdateExperience,
+    DeleteExperience,
+    AddSkill,
+    UpdateSkill,
+    DeleteSkill,
+    GetJobtoApplicant,
+    GetSavedJob,
+    GetAppliedJob,
+    GetAppliedJobByStatusReject,
+    GetAppliedJobByStatusWaiting,
+    GetAppliedJobByStatusApproved,
+    GetAppliedJobByStatusConsider
+    
 }

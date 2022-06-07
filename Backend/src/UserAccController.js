@@ -9,17 +9,13 @@ const login = async (req, res) => {
     const UserAcc = await dao.sequelize.query("exec LoginbyPhone @phone= '" + req.body.dienthoai + "', @password= '" + req.body.matkhau + "'", { raw: true, nest: true })
     if (UserAcc === undefined) {
 
-        res.status(401).json("Wrong username or password")
+        res.status(401).json("Wrong username ors password")
 
     } else {
         console.log(UserAcc)
-        if (req.body.dienthoai == UserAcc.dienthoai && req.body.matkhau == UserAcc.matkhau) {
-            return res.status(200).json({
-                UserAcc
-            })
-        }
-        return res.status(401).json("Wrong username or password");
-        
+        return res.status(200).json({
+            UserAcc
+        })
     }
 
 }

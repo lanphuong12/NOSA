@@ -13,13 +13,14 @@
         android:id="@+id/LinearLayout"
         android:padding="5dp"
         android:orientation="vertical">
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button2"
             android:text="CÔNG NGHỆ THÔNG TIN"
             android:textStyle="bold"
-            android:id="@+id/bt_danhmucnganhnghe"/>
+            android:id="@+id/tv_danhmucnganhnghe"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

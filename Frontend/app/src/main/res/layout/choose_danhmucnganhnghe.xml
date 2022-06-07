@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:id="@+id/layout1"
         android:padding="10dp">
         <TextView
             android:layout_width="match_parent"
@@ -30,8 +31,22 @@
             android:textStyle="italic" />
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:listitem="@layout/danhmucnganhnghe_adapter"
             android:id="@+id/lv_danhmucnganhnghe"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/layout1"
+        android:gravity="center">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:onClick="SaveNNquantam"
+            android:background="@drawable/button4"
+            android:id="@+id/bt_savengangnghe"/>
     </LinearLayout>
 </RelativeLayout>

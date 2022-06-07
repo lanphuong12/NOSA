@@ -14,10 +14,10 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31" >
         <activity
-            android:name=".JobApplied_adapter"
+            android:name=".Applicant.Adapter.JobApplied_adapter"
             android:exported="false" />
         <activity
-            android:name=".Applicant.SkillJob_adapter"
+            android:name=".Applicant.Adapter.SkillJob_adapter"
             android:exported="false" />
         <activity
             android:name=".HR.HR_Add_Update_Company"
