@@ -5,18 +5,12 @@ require('dotenv').config()
 const { Sequelize } = require('sequelize');
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('DBNOSA', 'sa',  'Pig@120920',{
-  dialect:  'mssql',
-  host:  'localhost',
-  dialectOptions: {
-    // Observe the need for this nested `options` field for MSSQL
-    options: {
-      // Your tedious options here
+const sequelize = new Sequelize(process.env.DATABASE, process.env.DATABASEBASE_USERNAME,  process.env.DATABASEBASE_PASSWORD, {
+  host:  process.env.DATABASE_SERVER,
+  dialect:  process.env.DATABASE_TYPE,
+  define:{
       freezeTableName:true,
-      timestamps:false,
-      trustedConnection: true,
-      encrypt: true
-    }
+      timestamps:false
   }
 });
 //uncomment this if you do not have database yet
