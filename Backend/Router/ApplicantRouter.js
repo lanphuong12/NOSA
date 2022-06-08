@@ -3,9 +3,9 @@ var express = require('express');
 var router = express.Router();
     //requie teacher controller
 const applicantController = require("../src/ApplicantController")
-    //handles post request with url /api/login
+    //handles post request with url /api/login 
 router.get('/getalldanhmucnganhnghe', applicantController.GetAllDanhmucnganhnghe);
-router.get('/getallnganhnghebtIdDMNN', applicantController.GetAllnganhngheByIdDMNN);
+router.post('/getallnganhnghebtIdDMNN', applicantController.GetAllnganhngheByIdDMNN);
 router.post('/AddNganhnghequantam', applicantController.AddNganhnghequantam);
 router.post('/AddExperience', applicantController.AddExperience);
 router.post('/UpdateExperience', applicantController.UpdateExperience);

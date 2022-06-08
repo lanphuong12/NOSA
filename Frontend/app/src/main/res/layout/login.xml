@@ -20,7 +20,7 @@
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/NOSA1"/>
+            android:background="@drawable/logonosa"/>
 
         <LinearLayout
             android:layout_width="match_parent"

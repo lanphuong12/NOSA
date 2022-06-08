@@ -154,6 +154,7 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
 
     private void GetDataDanhsachNNByIDdanhmuc(int idDM, ArrayList<Nganhnghe> arr) {
         Dataservice dataservice = APIService.getService();
+        System.out.println("ID danh mục quan tâm" + idDM);
         Call<List<Nganhnghe>> callback = dataservice.GetAllNganhngheByIDdanhmuc(idDM);
         callback.enqueue(new Callback<List<Nganhnghe>>() {
 

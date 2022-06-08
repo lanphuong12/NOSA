@@ -46,9 +46,9 @@
         <activity
             android:name=".Applicant.ApplicantHomeActivity"
             android:exported="false" />
-        <activity
-            android:name=".Applicant.ChooseDanhmucnganhngheActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Applicant.ChooseDanhmucnganhngheActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".Applicant.UpdateInfoPersionalActivity"
             android:exported="false" />
@@ -67,7 +67,7 @@
         <!-- android:name=".LoginActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".Applicant.ChooseDanhmucnganhngheActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
