@@ -23,11 +23,19 @@ const GetAllnganhngheByIdDMNN = async (req, res) => {
 }
 
 const AddNganhnghequantam = async (req, res) => {
-
+    const nganhnghequantam= await dao.sequelize.query(
+        "exec Add_Nganhnghe_User @idUser= '" + req.body.id_user + "', @idNganhnghe= '" + req.body.id_nganhnghe + "'", { raw: true, nest: true }
+    )
+    return res.status(200).send(nganhnghequantam)
 }
 
 const AddExperience = async (req, res) => {
-
+    const ExperienceUser = await dao.sequelize.query(
+        "exec AddExperienceByIdUser @iduser= '" + req.body.id_user + "', @name_experience= '" + req.body.name_experience 
+            + "', @amount_years= '" + req.body.amount_years +"', @mota= '" + req.body.mota + "'",
+    { raw: true, nest: true }
+    )
+    return res.status(200).send(ExperienceUser)
 }
 
 const UpdateExperience = async (req, res) => {

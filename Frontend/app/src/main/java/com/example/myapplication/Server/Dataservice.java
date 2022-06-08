@@ -22,7 +22,7 @@ public interface Dataservice {
     Call<List<Danhmucnganhnghe>> GetAllDanhmucnganhnghe();
 
     @FormUrlEncoded
-    @GET("applicant/getallnganhnghebtIdDMNN")
+    @POST("applicant/getallnganhnghebtIdDMNN")
     Call<List<Nganhnghe>> GetAllNganhngheByIDdanhmuc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
 //
 //    @GET("taikhoans")

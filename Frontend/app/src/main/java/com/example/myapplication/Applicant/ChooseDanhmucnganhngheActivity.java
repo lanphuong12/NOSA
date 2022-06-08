@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckedTextView;
-import android.widget.EditText;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -53,42 +51,41 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
                 int idDM = mang_danhmucnn.get(position).getIdDanhmucnganh();
                 ArrayList<Nganhnghe> mang_nganhnghe = new ArrayList<>();
                 GetDataDanhsachNNByIDdanhmuc(idDM, mang_nganhnghe);
-                DialogChooseNganhnghe(mang_nganhnghe);
+
             }
         });
     }
-
-    private void DialogChooseNganhnghe(ArrayList<Nganhnghe> arr){
+    private void DialogChooseNganhnghe(int idDM){
         Dialog dialog = new Dialog(ChooseDanhmucnganhngheActivity.this);
         dialog.setContentView(R.layout.choose_nganhnghe);
         dialog.show();
 
-        ListView lv_nganhnghe = (ListView) dialog.findViewById(R.id.lv_nganhnghe);
+        ListView lv_nganhnghe = (ListView) dialog.findViewById(R.id.list_view_with_checkbox);
         Button btSAVE = (Button) dialog.findViewById(R.id.bt_savengangnghe);
         Button btCANCEL = (Button) dialog.findViewById(R.id.bt_cancelngangnghe);
-
+        ArrayList<Nganhnghe> list_nn = GetDataDanhsachNNByIDdanhmuc(idDM);
         lv_nganhnghe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        ArrayAdapter<Nganhnghe> arrayAdapterNN = new ArrayAdapter<>(ChooseDanhmucnganhngheActivity.this, android.R.layout.simple_list_item_multiple_choice, arr);
-        lv_nganhnghe.setAdapter(arrayAdapterNN);
-        for(int i=0;i< arr.size(); i++ )  {
-            for (int j =0; j< arrIdnganhnghe.size(); j++){
-                if (arrIdnganhnghe.get(j) == arr.get(i).getIdNganh()){
-                    lv_nganhnghe.setItemChecked(i,true);
-                }
-                else {
-                    lv_nganhnghe.setItemChecked(i,false);
-                }
-            }
+        NganhngheAdapter nganhngheAdapter = new NganhngheAdapter(getApplicationContext(), list_nn);
+        nganhngheAdapter.notifyDataSetChanged();
 
-        }
+        lv_nganhnghe.setAdapter(nganhngheAdapter);
 
         lv_nganhnghe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckedTextView v = (CheckedTextView) view;
-                boolean currentCheck = v.isChecked();
-                Nganhnghe nn = (Nganhnghe) lv_nganhnghe.getItemAtPosition(position);
+                Object itemObject = parent.getAdapter().getItem(position);
+                Nganhnghe nn = (Nganhnghe) itemObject;
+                CheckBox itemCheckbox = (CheckBox) view.findViewById(R.id.list_view_item_checkbox);
+                if(nn.isChecked())
+                {
+                    itemCheckbox.setChecked(false);
+                    nn.setChecked(false);
+                }else
+                {
+                    itemCheckbox.setChecked(true);
+                    nn.setChecked(true);
+                }
             }
         });
 
@@ -119,10 +116,7 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
         for(int i=0;i<sp.size();i++){
             if(sp.valueAt(i)==true){
                 Nganhnghe nn= (Nganhnghe) lv.getItemAtPosition(i);
-                // Or:
-                // String s = ((CheckedTextView) listView.getChildAt(i)).getText().toString();
-                //
-                Integer s= nn.getIdNganh();
+                int s= nn.getIdNganh();
                 arrIdnganhnghe.add(s);
             }
         }
@@ -154,13 +148,13 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
 
     private void GetDataDanhsachNNByIDdanhmuc(int idDM, ArrayList<Nganhnghe> arr) {
         Dataservice dataservice = APIService.getService();
-        System.out.println("ID danh mục quan tâm" + idDM);
         Call<List<Nganhnghe>> callback = dataservice.GetAllNganhngheByIDdanhmuc(idDM);
         callback.enqueue(new Callback<List<Nganhnghe>>() {
 
             @Override
             public void onResponse(Call<List<Nganhnghe>> call, Response<List<Nganhnghe>> response) {
                 ArrayList<Nganhnghe> dsnn = (ArrayList<Nganhnghe>) response.body();
+                System.out.println("số lượng ngành nghề " + dsnn.size());
                 //Log.d("api",response.toString());
                 for (Nganhnghe nn: dsnn){
                     arr.add(nn);
@@ -173,6 +167,42 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
                 Toast.makeText(ChooseDanhmucnganhngheActivity.this, "Lấy dữ liệu thất bại ", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    private ArrayList<Nganhnghe> GetDataDanhsachNNByIDdanhmuc(int idDM) {
+        ArrayList<Nganhnghe> nganhngheArrayList = new ArrayList<>();
+        Dataservice dataservice = APIService.getService();
+        Call<List<Nganhnghe>> callback = dataservice.GetAllNganhngheByIDdanhmuc(idDM);
+        callback.enqueue(new Callback<List<Nganhnghe>>() {
+
+            @Override
+            public void onResponse(Call<List<Nganhnghe>> call, Response<List<Nganhnghe>> response) {
+                ArrayList<Nganhnghe> dsnn = (ArrayList<Nganhnghe>) response.body();
+                System.out.println("số lượng ngành nghề " + dsnn.size());
+                //Log.d("api",response.toString());
+                for (Nganhnghe nn: dsnn){
+                    for (int j =0; j< arrIdnganhnghe.size(); j++){
+                        if (arrIdnganhnghe.get(j) == nn.getIdNganh()){
+                            nn.setChecked(true);
+                            break;
+                        }
+                        else {
+                            nn.setChecked(false);
+                        }
+                    }
+                    nganhngheArrayList.add(nn);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Nganhnghe>> call, Throwable t) {
+
+                Toast.makeText(ChooseDanhmucnganhngheActivity.this, "Lấy dữ liệu thất bại ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return nganhngheArrayList;
     }
 
     private void Anhxa() {

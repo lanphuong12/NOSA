@@ -18,6 +18,8 @@ public class Nganhnghe implements Serializable {
     @Expose
     private String tennganh;
 
+    private boolean checked = false;
+
     public Integer getIdNganh() {
         return idNganh;
     }
@@ -40,6 +42,14 @@ public class Nganhnghe implements Serializable {
 
     public void setTennganh(String tennganh) {
         this.tennganh = tennganh;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     @Override
