@@ -6,6 +6,6 @@ const accController = require("../src/UserAccController")
     //handles post request with url /api/login
 router.post('/login', accController.login);
 router.post('/changePassword', accController.changePassword);
-router.post('/updateUserAcc', accController.updateUserAcc);
+router.post('/createUserAcc', accController.createUser);
 // export router to use in index file
 module.exports = router;

@@ -34,19 +34,7 @@ const UpdateStatusCV = async (req, res) => {
     
 }
 
-const GetCVrejected = async (req, res) => {
-    
-}
-
-const GetCVwaiting = async (req, res) => {
-    
-}
-
-const GetCVapproved = async (req, res) => {
-    
-}
-
-const GetCVconsider = async (req, res) => {
+const GetCVbyStatus = async (req, res) => {
     
 }
 
@@ -57,8 +45,5 @@ module.exports = {
     GetAllCVApplied,
     GetAllCVAppliedByIdJob,
     UpdateStatusCV,
-    GetCVrejected,
-    GetCVwaiting,
-    GetCVapproved,
-    GetCVconsider
+    GetCVbyStatus
 }

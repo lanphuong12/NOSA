@@ -2,6 +2,7 @@ package com.example.myapplication.Server;
 
 import com.example.myapplication.Model.Danhmucnganhnghe;
 import com.example.myapplication.Model.Nganhnghe;
+import com.example.myapplication.Model.UserAcc;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,40 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface Dataservice {
+
+    @FormUrlEncoded
+    @POST("login")
+    Call<UserAcc> Login(@Field("dienthoai") String Dienthoai, @Field("matkhau") String Matkhau);
+//
+//    @FormUrlEncoded
+//    @POST("applicant/getallnganhnghebtIdDMNN")
+//    Call<List<Nganhnghe>> ChangePass(@Field("id_danhmucnganh") Integer idDanhmucnganh);
+//
+//    @FormUrlEncoded
+//    @POST("applicant/getallnganhnghebtIdDMNN")
+//    Call<List<Nganhnghe>> CreateAcc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
+//
+//    @GET("applicant/getallnganhnghebtIdDMNN")
+//    Call<List<Nganhnghe>> GetDataTrinhdohocvan();
+//
+//    @FormUrlEncoded
+//    @POST("applicant/getallnganhnghebtIdDMNN")
+//    Call<List<Nganhnghe>> UpdateAcc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
+//
+//    @GET("applicant/getallnganhnghebtIdDMNN")
+//    Call<List<Nganhnghe>> GetDataLoaiSkill();
+//
+//    @FormUrlEncoded
+//    @POST("applicant/getallnganhnghebtIdDMNN")
+//    Call<List<Nganhnghe>> GetDataSkillByLoaiSkill(@Field("id_danhmucnganh") Integer idDanhmucnganh);
+//
+//    @FormUrlEncoded
+//    @POST("applicant/getallnganhnghebtIdDMNN")
+//    Call<List<Nganhnghe>> AddSkillUser(@Field("id_danhmucnganh") Integer idDanhmucnganh);
+//
+//    @FormUrlEncoded
+//    @POST("applicant/getallnganhnghebtIdDMNN")
+//    Call<List<Nganhnghe>> AddExpUser(@Field("id_danhmucnganh") Integer idDanhmucnganh);
 
     @GET("applicant/getalldanhmucnganhnghe")
     Call<List<Danhmucnganhnghe>> GetAllDanhmucnganhnghe();

@@ -10,9 +10,6 @@ router.get('/GetCompanyCreated', hrController.GetCompanyCreated);
 router.get('/GetAllCVApplied', hrController.GetAllCVApplied);
 router.get('/GetAllCVAppliedByIdJob', hrController.GetAllCVAppliedByIdJob);
 router.post('/UpdateStatusCV', hrController.UpdateStatusCV);
-router.get('/GetCVrejected', hrController.GetCVrejected);
-router.get('/GetCVwaiting', hrController.GetCVwaiting);
-router.get('/GetCVapproved', hrController.GetCVapproved);
-router.get('/GetCVconsider', hrController.GetCVconsider);
+router.get('/GetCVbyStatus', hrController.GetCVbyStatus);
 // export router to use in index file
 module.exports = router;

@@ -6,10 +6,10 @@ const dao = require('../Dao/Connection')
 /*function*/
 const GetJobByIdJob = async (req, res) => {
 
-    const listDanhmucnganhnghe= await dao.sequelize.query(
-        `Exec GetAllDanhmucnganhnghe ` , { raw: true, nest: true }
+    const job= await dao.sequelize.query(
+        "exec GetJobbyIdJob @idJob= '" + req.body.id_congviec +  "'" , { raw: true, nest: true }
     )
-    return res.status(200).send(listDanhmucnganhnghe)
+    return res.status(200).send(job)
 
 }
 

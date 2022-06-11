@@ -7,29 +7,48 @@ const dao = require('../Dao/Connection')
 const login = async (req, res) => {
 
     const UserAcc = await dao.sequelize.query("exec LoginbyPhone @phone= '" + req.body.dienthoai + "', @password= '" + req.body.matkhau + "'", { raw: true, nest: true })
-    if (UserAcc === undefined) {
+    if (UserAcc.length == 0) {
 
-        res.status(401).json("Wrong username ors password")
+        return null;
 
     } else {
         console.log(UserAcc)
-        return res.status(200).json({
-            UserAcc
-        })
+        return res.status(200).send(UserAcc)
+    }
+
+}
+
+const createUser = async (req, res) => {
+
+    const UserAcc = await dao.sequelize.query("exec Create_User @phone= '" + req.body.dienthoai 
+    + "', @password= '" + req.body.matkhau + "', @role= '" + req.body.trangthai + "'", { raw: true, nest: true })
+    if (UserAcc.length == 0) {
+
+        return null;
+
+    } else {
+        console.log(UserAcc)
+        return res.status(200).send(UserAcc)
     }
 
 }
 
 const changePassword = async (req, res) => {
+    const UserAcc = await dao.sequelize.query("exec Change_Pass @idUser= '" + req.body.id_user 
+    + "', @pass= '" + req.body.matkhau + "'", { raw: true, nest: true })
+    if (UserAcc.length == 0) {
 
+        return null;
+
+    } else {
+        console.log(UserAcc)
+        return res.status(200).send(UserAcc)
+    }
 }
 
-const updateUserAcc = async (req, res) => {
-
-}
 
 module.exports = {
     login,
-    changePassword,
-    updateUserAcc
+    createUser,
+    changePassword
 }
