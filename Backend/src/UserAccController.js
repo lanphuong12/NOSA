@@ -18,10 +18,18 @@ const login = async (req, res) => {
 
 }
 
+const checkPhone = async (req, res) => {
+
+    const phone = await dao.sequelize.query("exec CheckPhone @phone= '" + req.body.dienthoai + "'", { raw: true, nest: true })
+    
+    return res.status(200).send(phone)
+
+}
+
 const createUser = async (req, res) => {
 
     const UserAcc = await dao.sequelize.query("exec Create_User @phone= '" + req.body.dienthoai 
-    + "', @password= '" + req.body.matkhau + "', @role= '" + req.body.trangthai + "'", { raw: true, nest: true })
+    + "', @password= '" + req.body.matkhau + "', @role= '" + req.body.role + "'", { raw: true, nest: true })
     if (UserAcc.length == 0) {
 
         return null;
@@ -49,6 +57,7 @@ const changePassword = async (req, res) => {
 
 module.exports = {
     login,
+    checkPhone,
     createUser,
     changePassword
 }

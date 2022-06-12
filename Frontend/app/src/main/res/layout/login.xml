@@ -79,9 +79,11 @@
             android:gravity="left">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_forgotpass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button1"
+                android:onClick="ForgotPass"
                 android:gravity="left|center"
                 android:text="Quên mật khẩu?"
                 android:textAllCaps="false"

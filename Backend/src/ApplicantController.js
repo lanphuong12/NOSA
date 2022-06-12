@@ -13,10 +13,10 @@ const GetUserById = async (req, res) => {
 
 const UpdateUserAcc = async (req, res) => {
     const UserAcc = await dao.sequelize.query("exec Update_User @idUser= '" + req.body.id_user 
-    + "', @hoten= '" + req.body.id_user +"', @email= '" + req.body.id_user 
-    + "', @gender= '" + req.body.id_user + "', @birth= '" + req.body.id_user 
-    + "', @address= '" + req.body.id_user + "', @trinhdo= '" + req.body.id_user 
-    + "', @anh = '" + req.body.id_user + "'", { raw: true, nest: true })
+    + "', @hoten= '" + req.body.hoten +"', @email= '" + req.body.email 
+    + "', @gender= '" + req.body.gioitinh + "', @birth= '" + req.body.ngaysinh 
+    + "', @address= '" + req.body.diachi + "', @trinhdo= '" + req.body.id_trinhdo 
+    + "', @anh = '" + req.body.anh + "'", { raw: true, nest: true })
 
     if (UserAcc.length == 0) {
         return null;
@@ -49,7 +49,7 @@ const AddNganhnghequantam = async (req, res) => {
         "exec Add_Nganhnghe_User @idUser= '" + req.body.id_user + "', @idNganhnghe= '" + req.body.id_nganhnghe + "'", { raw: true, nest: true }
     )
     return res.status(200).send(nganhnghequantam)
-}
+} 
 
 const GetExpByIdUser = async (req, res) => {
     const ExperienceUser = await dao.sequelize.query(

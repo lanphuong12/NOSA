@@ -1,7 +1,12 @@
 package com.example.myapplication.Server;
 
 import com.example.myapplication.Model.Danhmucnganhnghe;
+import com.example.myapplication.Model.ExpUser;
+import com.example.myapplication.Model.Kynang;
+import com.example.myapplication.Model.Loaikynang;
 import com.example.myapplication.Model.Nganhnghe;
+import com.example.myapplication.Model.SkillUser;
+import com.example.myapplication.Model.Trinhdohocvan;
 import com.example.myapplication.Model.UserAcc;
 
 import java.util.Date;
@@ -22,36 +27,52 @@ public interface Dataservice {
     @FormUrlEncoded
     @POST("login")
     Call<UserAcc> Login(@Field("dienthoai") String Dienthoai, @Field("matkhau") String Matkhau);
-//
-//    @FormUrlEncoded
-//    @POST("applicant/getallnganhnghebtIdDMNN")
-//    Call<List<Nganhnghe>> ChangePass(@Field("id_danhmucnganh") Integer idDanhmucnganh);
-//
-//    @FormUrlEncoded
-//    @POST("applicant/getallnganhnghebtIdDMNN")
-//    Call<List<Nganhnghe>> CreateAcc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
-//
-//    @GET("applicant/getallnganhnghebtIdDMNN")
-//    Call<List<Nganhnghe>> GetDataTrinhdohocvan();
-//
-//    @FormUrlEncoded
-//    @POST("applicant/getallnganhnghebtIdDMNN")
-//    Call<List<Nganhnghe>> UpdateAcc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
-//
-//    @GET("applicant/getallnganhnghebtIdDMNN")
-//    Call<List<Nganhnghe>> GetDataLoaiSkill();
-//
-//    @FormUrlEncoded
-//    @POST("applicant/getallnganhnghebtIdDMNN")
-//    Call<List<Nganhnghe>> GetDataSkillByLoaiSkill(@Field("id_danhmucnganh") Integer idDanhmucnganh);
-//
-//    @FormUrlEncoded
-//    @POST("applicant/getallnganhnghebtIdDMNN")
-//    Call<List<Nganhnghe>> AddSkillUser(@Field("id_danhmucnganh") Integer idDanhmucnganh);
-//
-//    @FormUrlEncoded
-//    @POST("applicant/getallnganhnghebtIdDMNN")
-//    Call<List<Nganhnghe>> AddExpUser(@Field("id_danhmucnganh") Integer idDanhmucnganh);
+
+    @FormUrlEncoded
+    @POST("checkPhone")
+    Call<String> CheckPhone(@Field("dienthoai") String Dienthoai);
+
+    @FormUrlEncoded
+    @POST("changePassword")
+    Call<UserAcc> ChangePass(@Field("id_user") Integer idUser, @Field("matkhau") String pass);
+
+    @FormUrlEncoded
+    @POST("createUser")
+    Call<UserAcc> CreateAcc(@Field("dienthoai") String phones, @Field("matkhau") String pass, @Field("role") Integer role);
+
+    @GET("applicant/GetDataTrinhdohocvan")
+    Call<List<Trinhdohocvan>> GetDataTrinhdohocvan();
+
+    @FormUrlEncoded
+    @PUT("applicant/UpdateUserAcc")
+    Call<UserAcc> UpdateAcc(@Field("id_user") Integer idUser,
+                                  @Field("hoten") String ten,
+                                  @Field("email") String email,
+                                  @Field("gioitinh") String gender,
+                                  @Field("ngaysinh") Date birth,
+                                  @Field("diachi") String address,
+                                  @Field("id_trinhdo") Integer idTrinhdo,
+                                  @Field("anh") String img);
+
+    @GET("applicant/GetDataLoaiSkill")
+    Call<List<Loaikynang>> GetDataLoaiSkill();
+
+    @FormUrlEncoded
+    @POST("applicant/GetDataSkillByIdLoaiSkill")
+    Call<List<Kynang>> GetDataSkillByLoaiSkill(@Field("id_danhmucnganh") Integer idDanhmucnganh);
+
+    @FormUrlEncoded
+    @POST("applicant/AddSkill")
+    Call<SkillUser> AddSkillUser(@Field("id_user") Integer idUser,
+                                 @Field("id_skill") Integer idSkill,
+                                 @Field("mota") String mota);
+
+    @FormUrlEncoded
+    @POST("applicant/AddExperience")
+    Call<ExpUser> AddExpUser(@Field("id_user") Integer idU,
+                             @Field("name_experience") String nameExp,
+                             @Field("amount_years") Integer years,
+                             @Field("mota") String des);
 
     @GET("applicant/getalldanhmucnganhnghe")
     Call<List<Danhmucnganhnghe>> GetAllDanhmucnganhnghe();
