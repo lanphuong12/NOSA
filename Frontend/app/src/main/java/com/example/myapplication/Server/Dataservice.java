@@ -1,7 +1,9 @@
 package com.example.myapplication.Server;
 
+import com.example.myapplication.Model.AppliedJob;
 import com.example.myapplication.Model.Danhmucnganhnghe;
 import com.example.myapplication.Model.ExpUser;
+import com.example.myapplication.Model.Job;
 import com.example.myapplication.Model.Kynang;
 import com.example.myapplication.Model.Loaikynang;
 import com.example.myapplication.Model.Nganhnghe;
@@ -80,12 +82,18 @@ public interface Dataservice {
     @FormUrlEncoded
     @POST("applicant/getallnganhnghebtIdDMNN")
     Call<List<Nganhnghe>> GetAllNganhngheByIDdanhmuc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
-//
-//    @GET("taikhoans")
-//    Call<List<User>> GetDataUser();
-//
-//    @GET("Students")
-//    Call<List<Student>> GetDataStudent();
+
+    @FormUrlEncoded
+    @POST("applicant/GetJobtoApplicant")
+    Call<List<Job>> GetJobToApplicant(@Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("applicant/GetSavedJob")
+    Call<List<Job>> GetSavedJob(@Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("applicant/GetAppliedJob")
+    Call<List<AppliedJob>> GetAppliedJob(@Field("id_user") Integer idUser);
 //
 //    @GET("Classes")
 //    Call<List<Class>> GetDataClass();

@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserAcc> call, Throwable t) {
-
                 Toast.makeText(LoginActivity.this, "Lấy dữ liệu thất bại ", Toast.LENGTH_SHORT).show();
             }
         });

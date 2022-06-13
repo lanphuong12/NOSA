@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.myapplication.Applicant.UpdateInfoPersionalActivity;
 import com.example.myapplication.HR.HrHomeActivity;
 import com.example.myapplication.Model.UserAcc;
 import com.example.myapplication.Server.APIService;
@@ -26,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button bt_cancel, bt_register;
     int roleUserAcc;
     boolean check = false;
+
+    UserAcc userAcc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +84,22 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else {
             Dataservice dataservice = APIService.getService();
-            Call<String> callback = dataservice.CheckPhone(phone);
+            Call<UserAcc> callback = dataservice.CreateAcc(phone, pass, roleUserAcc);
+            callback.enqueue(new Callback<UserAcc>() {
+                @Override
+                public void onResponse(Call<UserAcc> call, Response<UserAcc> response) {
+                    userAcc = (UserAcc) response.body();
+                    int IdUserLatest = userAcc.getIdUser();
+                    Intent intent1 = new Intent(RegisterActivity.this, UpdateInfoPersionalActivity.class);
+                    intent1.putExtra("idUserAcc", IdUserLatest);
+                    startActivity(intent1);
+                }
+
+                @Override
+                public void onFailure(Call<UserAcc> call, Throwable t) {
+                    Toast.makeText(RegisterActivity.this, "Lấy dữ liệu thất bại ", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

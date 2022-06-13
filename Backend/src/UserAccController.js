@@ -30,14 +30,10 @@ const createUser = async (req, res) => {
 
     const UserAcc = await dao.sequelize.query("exec Create_User @phone= '" + req.body.dienthoai 
     + "', @password= '" + req.body.matkhau + "', @role= '" + req.body.role + "'", { raw: true, nest: true })
-    if (UserAcc.length == 0) {
+    
+    const Acc = await dao.sequelize.query("SELECT TOP 1 id_user FROM User_Acc ORDER BY id_user DESC", { raw: true, nest: true })
 
-        return null;
-
-    } else {
-        console.log(UserAcc)
-        return res.status(200).send(UserAcc)
-    }
+    return res.status(200).send(Acc)
 
 }
 

@@ -1,5 +1,6 @@
 package com.example.myapplication.Applicant.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,60 +8,86 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.myapplication.Applicant.Adapter.AlliedJobAdapter;
+import com.example.myapplication.Applicant.Adapter.JobtoApplicantAdapter;
+import com.example.myapplication.Applicant.ApplicantHomeActivity;
+import com.example.myapplication.Applicant.CVDetailActivity;
+import com.example.myapplication.Applicant.JobDetailActivity;
+import com.example.myapplication.Model.AppliedJob;
+import com.example.myapplication.Model.Job;
 import com.example.myapplication.R;
+import com.example.myapplication.Server.APIService;
+import com.example.myapplication.Server.Dataservice;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Applicant_Fragment_cvApplied#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Applicant_Fragment_cvApplied extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    ListView lv_savedJob;
+    AlliedJobAdapter AppliedJobAdapter;
+    ArrayList<AppliedJob> mang_job;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Applicant_Fragment_cvApplied() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Applicant_Fragment_cvApplied.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Applicant_Fragment_cvApplied newInstance(String param1, String param2) {
-        Applicant_Fragment_cvApplied fragment = new Applicant_Fragment_cvApplied();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    ApplicantHomeActivity mAppHomActivity;
+    private View mView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.applicant_fragment_cv_applied, container, false);
+        mView = inflater.inflate(R.layout.applicant_fragment_cv_applied, container, false);
+        mAppHomActivity = (ApplicantHomeActivity) getActivity();
+        int User = mAppHomActivity.getIdUser();
+        getDataAppliedJob(User);
+        initUI();
+
+        lv_savedJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int idCV = mang_job.get(position).getIdNopcv();
+                Intent intent = new Intent(getActivity(), CVDetailActivity.class);
+                intent.putExtra("id_CV", idCV);
+                startActivity(intent);
+            }
+        });
+        return mView;
     }
+
+    private void getDataAppliedJob(int User) {
+        Dataservice dataservice = APIService.getService();
+        Call<List<AppliedJob>> callback = dataservice.GetAppliedJob(User);
+        callback.enqueue(new Callback<List<AppliedJob>>() {
+            @Override
+            public void onResponse(Call<List<AppliedJob>> call, Response<List<AppliedJob>> response) {
+                ArrayList<AppliedJob> job = (ArrayList<AppliedJob>) response.body();
+                //Log.d("api",response.toString());
+                for (AppliedJob cv: job){
+                    mang_job.add(cv);
+                }
+                AppliedJobAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<AppliedJob>> call, Throwable t) {
+                Toast.makeText(getActivity(), "Lấy dữ liệu thất bại ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void initUI() {
+        lv_savedJob = mView.findViewById(R.id.lv_savedjob);
+        mang_job = new ArrayList<>();
+        AppliedJobAdapter = new AlliedJobAdapter(mang_job, getActivity());
+        lv_savedJob.setAdapter(AppliedJobAdapter);
+    }
+
 }

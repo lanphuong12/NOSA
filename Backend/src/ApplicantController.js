@@ -137,9 +137,10 @@ const GetNganhNgheByIdUserIddmnn = async (req, res) => {
 
 const GetJobtoApplicant = async (req, res) => {
     const JobtoApplicant = await dao.sequelize.query(
-        "exec JobtoApplicant @idUser= '" + req.body.id_user +  "'",
+        "exec JobtoApplicant @idUser= " + req.body.id_user +  "",
     { raw: true, nest: true }
     )
+    JobtoApplicant.logo = "https://datn-nosa.herokuapp.com/storage/uploads/LogoCompany/" + JobtoApplicant.logo
     return res.status(200).send(JobtoApplicant)
 }
 

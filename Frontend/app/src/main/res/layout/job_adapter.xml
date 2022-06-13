@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/logoCompany"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:background="@drawable/logonosa"
