@@ -9,6 +9,24 @@ const GetJobByIdJob = async (req, res) => {
     const job= await dao.sequelize.query(
         "exec GetJobbyIdJob @idJob= '" + req.body.id_congviec +  "'" , { raw: true, nest: true }
     )
+    return res.status(200).send(job[0])
+
+}
+
+const GetSkillJobbyIdJob = async (req, res) => {
+
+    const skilljob= await dao.sequelize.query(
+        "exec GetSkillJobbyIdJob @idJob= '" + req.body.id_congviec +  "'" , { raw: true, nest: true }
+    )
+    return res.status(200).send(skilljob)
+
+}
+
+const GetJobbyIdSkill = async (req, res) => {
+
+    const job= await dao.sequelize.query(
+        "exec GetJobbyIdSkill @idSkill= '" + req.body.id_skill +  "'" , { raw: true, nest: true }
+    )
     return res.status(200).send(job)
 
 }
@@ -35,6 +53,8 @@ const GetJobByName = async (req, res) => {
 
 module.exports = {
     GetJobByIdJob,
+    GetSkillJobbyIdJob,
+    GetJobbyIdSkill,
     UpdateJob,
     GetJobByIdSkillJob,
     AddJob,

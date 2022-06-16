@@ -9,7 +9,7 @@ const GetCompanyByIdJob = async (req, res) => {
     const company= await dao.sequelize.query(
         "exec GetCompanybyIdJob @idJob= '" + req.body.id_congviec +  "'" , { raw: true, nest: true }
     )
-    return res.status(200).send(company)
+    return res.status(200).send(company[0])
 
 }
 

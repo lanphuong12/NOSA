@@ -58,9 +58,9 @@ public class Applicant_Fragment_main extends Fragment {
         lv_jobtoapplicant.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int idJob = mang_job.get(position).getIdCongviec();
                 Intent intent = new Intent(getActivity(), JobDetailActivity.class);
-                intent.putExtra("id_job", idJob);
+                intent.putExtra("idUserAcc", User);
+                intent.putExtra("id_job", mang_job.get(position));
                 startActivity(intent);
             }
         });

@@ -8,18 +8,19 @@
     tools:context=".Applicant.JobDetailActivity">
 
     <LinearLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/layout2"
         android:gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:paddingBottom="5dp">
 
             <TextView
                 android:id="@+id/tv_namejob"
@@ -30,35 +31,53 @@
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_namecpmpany"
-                android:layout_width="wrap_content"
+
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên công ty hiển thị ở đây"
-                android:textColor="#C6000000"
-                android:textSize="20dp" />
+                android:layout_marginBottom="8pt"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imgv_logocty"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/black"
+                    android:textSize="8pt" />
+
+                <TextView
+                    android:id="@+id/tv_namecpmpany"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên công ty hiển thị ở đây"
+                    android:textColor="#C6000000"
+                    android:textSize="20dp" />
+            </TableRow>
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lv_skillsjob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/skill_job_adapter"
-            android:id="@+id/lv_skillsjob"/>
+            tools:listitem="@layout/skill_job_adapter" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_jobdetail"
+                android:onClick="JobDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button4"
@@ -66,6 +85,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_companydetail"
+                android:onClick="CompanyDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -79,31 +99,33 @@
             android:layout_width="match_parent"
             android:layout_height="200pt"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_savejob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp">
+            android:background="@drawable/button"
+            android:onClick="SaveJob"
+            android:text="Save"
+            android:textAllCaps="false" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_savejob"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button"
-                android:text="Save"
-                android:textAllCaps="false" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_applyto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/button"
-                android:text="Apply to"
-                android:textAllCaps="false" />
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_applyto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/button"
+            android:onClick="ApplyCVtoJob"
+            android:text="Apply to"
+            android:textAllCaps="false" />
     </LinearLayout>
 </RelativeLayout>

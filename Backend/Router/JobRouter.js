@@ -10,5 +10,8 @@ router.post('/GetJobByIdSkillJob', jobController.GetJobByIdSkillJob);
 router.post('/AddJob', jobController.AddJob);
 router.post('/GetJobBySalary', jobController.GetJobBySalary);
 router.post('/GetJobByName', jobController.GetJobByName);
+router.post('/GetSkillJobbyIdJob', jobController.GetSkillJobbyIdJob);
+router.post('/GetJobbyIdSkill', jobController.GetJobbyIdSkill);
+
 // export router to use in index file
 module.exports = router;

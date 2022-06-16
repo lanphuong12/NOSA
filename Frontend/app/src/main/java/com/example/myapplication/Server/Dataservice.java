@@ -1,13 +1,16 @@
 package com.example.myapplication.Server;
 
 import com.example.myapplication.Model.AppliedJob;
+import com.example.myapplication.Model.Company;
 import com.example.myapplication.Model.Danhmucnganhnghe;
 import com.example.myapplication.Model.ExpUser;
 import com.example.myapplication.Model.Job;
+import com.example.myapplication.Model.JobDetail;
 import com.example.myapplication.Model.Kynang;
 import com.example.myapplication.Model.Loaikynang;
 import com.example.myapplication.Model.LoginResponse;
 import com.example.myapplication.Model.Nganhnghe;
+import com.example.myapplication.Model.SkillJob;
 import com.example.myapplication.Model.SkillUser;
 import com.example.myapplication.Model.Trinhdohocvan;
 import com.example.myapplication.Model.UserAcc;
@@ -115,9 +118,34 @@ public interface Dataservice {
     @POST("applicant/GetNganhNgheByIdUserIddmnn")
     Call<List<Nganhnghe>> GetDataNNByIdUserIdDMNN(@Field("id_user") Integer idUser,
                                             @Field("id_danhmucnganh") Integer idDMNN);
-//
-//    @GET("Classes")
-//    Call<List<Class>> GetDataClass();
+
+    @FormUrlEncoded
+    @POST("job/GetSkillJobbyIdJob")
+    Call<List<SkillJob>> GetSkillJobbyIdJob(@Field("id_congviec") Integer idJob);
+
+    @FormUrlEncoded
+    @POST("job/GetJobbyIdSkill")
+    Call<List<Job>> GetJobbyIdSkill(@Field("id_skill") Integer idSkill);
+
+    @FormUrlEncoded
+    @POST("job/GetJobByIdJob")
+    Call<JobDetail> GetJobByIdJob(@Field("id_congviec") Integer idJob);
+
+    @FormUrlEncoded
+    @POST("company/GetCompanybyIdJob")
+    Call<Company> GetCompanybyIdJob(@Field("id_congviec") Integer idJob);
+
+    @FormUrlEncoded
+    @POST("applicant/SaveJob")
+    Call<Void> SaveJob(@Field("id_user") Integer idUser,
+                       @Field("id_congviec") Integer idJob);
+
+    @FormUrlEncoded
+    @POST("applicant/ApplyJob")
+    Call<Void> ApplyCVtoJob(@Field("id_user") Integer idUser,
+                            @Field("id_congviec") Integer idJob,
+                            @Field("CV") String cv,
+                            @Field("ngaynop") Date ngaynop);
 //
 //    @POST("students/searchHV/{word}")
 //    Call<List<Student>> SearchHV(String word);

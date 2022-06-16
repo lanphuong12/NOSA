@@ -102,7 +102,7 @@ public class Applicant_Fragment_Info extends Fragment implements NganhngheQuanta
                         .error(R.drawable.errorimg)
                         .into(img_avatar);
                 tv_name.setText(userAcc.getHoten());
-                tv_age.setText(userAcc.getTuoi());
+                tv_age.setText(userAcc.getTuoi().toString());
                 tv_gender.setText(userAcc.getGioitinh());
                 tv_add.setText(userAcc.getDiachi());
                 tv_email.setText(userAcc.getEmail());
