@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Applicant.ApplicantHomeActivity;
 import com.example.myapplication.HR.HrHomeActivity;
+import com.example.myapplication.Model.LoginResponse;
 import com.example.myapplication.Model.UserAcc;
 import com.example.myapplication.ResertPass.ResertpassEnterphoneActivity;
 import com.example.myapplication.Server.APIService;
@@ -46,16 +47,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public void Login(String phone, String pass){
         Dataservice dataservice = APIService.getService();
-        Call<UserAcc> callback = dataservice.Login(phone, pass);
-        callback.enqueue(new Callback<UserAcc>() {
+        Call<LoginResponse> callback = dataservice.Login(phone, pass);
+        callback.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<UserAcc> call, Response<UserAcc> response) {
-                user = (UserAcc) response.body();
-                if(user == null){
-                    Toast.makeText(LoginActivity.this, "Phone and Pass wrong!! Please try again", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    int role = Integer.parseInt(user.getRole().toString());
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if(response.body().getUserAcc() != null){
+                    int role = response.body().getUserAcc().getRole();
                     if (role== 1){ // 1 is HR
                         Intent intent1 = new Intent(LoginActivity.this, HrHomeActivity.class);
                         intent1.putExtra("idUserAcc", user.getIdUser());
@@ -67,10 +64,13 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent2);
                     }
                 }
+                else {
+                    Toast.makeText(LoginActivity.this, "Phone and Pass wrong!! Please try again", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<UserAcc> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Lấy dữ liệu thất bại!", Toast.LENGTH_SHORT).show();
             }
         });

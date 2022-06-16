@@ -1,15 +1,12 @@
 const Sequelize = require('sequelize');
-const DataTypes = Sequelize.DataTypes;
-const account = require('../Model/User_Acc').account;
 const dao = require('../Dao/Connection')
 
 /*function*/
 const login = async (req, res) => {
 
     const User = await dao.sequelize.query("exec LoginbyPhone @phone= '" + req.body.dienthoai + "', @password= '" + req.body.matkhau + "'", { raw: true, nest: true })
-    
     return res.status(200).json({
-        UserAcc: User
+        UserAcc: User[0]
     })
 
 }
@@ -24,8 +21,6 @@ const checkPhone = async (req, res) => {
 
 const createUser = async (req, res) => {
 
-    const UserAcc = await dao.sequelize.query("exec Create_User @phone= '" + req.body.dienthoai 
-    + "', @password= '" + req.body.matkhau + "', @role= '" + req.body.role + "'", { raw: true, nest: true })
     
     const Acc = await dao.sequelize.query("SELECT TOP 1 id_user FROM User_Acc ORDER BY id_user DESC", { raw: true, nest: true })
 

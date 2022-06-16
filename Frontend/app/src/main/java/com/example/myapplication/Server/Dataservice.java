@@ -6,6 +6,7 @@ import com.example.myapplication.Model.ExpUser;
 import com.example.myapplication.Model.Job;
 import com.example.myapplication.Model.Kynang;
 import com.example.myapplication.Model.Loaikynang;
+import com.example.myapplication.Model.LoginResponse;
 import com.example.myapplication.Model.Nganhnghe;
 import com.example.myapplication.Model.SkillUser;
 import com.example.myapplication.Model.Trinhdohocvan;
@@ -28,8 +29,8 @@ public interface Dataservice {
 
     @FormUrlEncoded
     @POST("login")
-    Call<UserAcc> Login(@Field("dienthoai") String phone,
-                        @Field("matkhau") String pass);
+    Call<LoginResponse> Login(@Field("dienthoai") String phone,
+                              @Field("matkhau") String pass);
 
     @FormUrlEncoded
     @POST("checkPhone")
