@@ -33,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class JobDetailActivity extends AppCompatActivity {
+public class JobDetailActivity extends AppCompatActivity implements SkillJob_adapter.OnSkillJobListener {
 
     ImageView img_logocompany;
     TextView tv_namecompany, tv_namejob;
@@ -43,6 +43,7 @@ public class JobDetailActivity extends AppCompatActivity {
     ArrayList<SkillJob> listSkillJob = new ArrayList<>();
     SkillJob_adapter skillJob_adapter;
     int IdUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +75,7 @@ public class JobDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<SkillJob>> call, Response<List<SkillJob>> response) {
                 ArrayList<SkillJob> arr = (ArrayList<SkillJob>) response.body();
-                for (SkillJob skillJob : arr){
+                for (SkillJob skillJob : arr) {
                     listSkillJob.add(skillJob);
                 }
 
@@ -100,7 +101,7 @@ public class JobDetailActivity extends AppCompatActivity {
         bt_applycvtojob = findViewById(R.id.bt_applyto);
 
         listSkillJob = new ArrayList<>();
-        skillJob_adapter = new SkillJob_adapter(listSkillJob, (SkillJob_adapter.OnSkillJobListener) this);
+        skillJob_adapter = new SkillJob_adapter(listSkillJob, this);
     }
 
     private void loadFragment(Fragment fragment) {
@@ -139,6 +140,9 @@ public class JobDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(JobDetailActivity.this, "Lưu công việc thành công!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(JobDetailActivity.this, ApplicantHomeActivity.class);
+                intent.putExtra("idUserAcc",IdUser);
+                startActivity(intent);
             }
 
             @Override
@@ -155,4 +159,12 @@ public class JobDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void OnSkillJobClick(int position) {
+        SkillJob skillJob = listSkillJob.get(position);
+        Intent intent = new Intent(JobDetailActivity.this, ListJob.class);
+        intent.putExtra("idUserAcc",IdUser);
+        intent.putExtra("id_skilljob", skillJob.getIdSkill());
+        startActivity(intent);
+    }
 }

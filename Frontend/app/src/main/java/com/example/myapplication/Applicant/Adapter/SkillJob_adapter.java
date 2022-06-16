@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.myapplication.Applicant.JobDetailActivity;
 import com.example.myapplication.Model.SkillJob;
 import com.example.myapplication.R;
 

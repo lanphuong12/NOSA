@@ -20,7 +20,7 @@
             android:name=".Applicant.Adapter.JobApplied_adapter"
             android:exported="false" />
         <activity
-            android:name=".Applicant.Adapter.SkillJob_adapter"
+            android:name=".Applicant.ListJob"
             android:exported="false" />
         <activity
             android:name=".HR.HR_Add_Update_Company"
@@ -49,12 +49,12 @@
         <activity
             android:name=".Applicant.ApplicantHomeActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Applicant.ChooseDanhmucnganhngheActivity"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".Applicant.UpdateInfoPersionalActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".Applicant.ChooseDanhmucnganhngheActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Applicant.UpdateInfoPersionalActivity"
+            android:exported="false" />
         <activity
             android:name=".ResertPass.ResertpassEnternewpassActivity"
             android:exported="false" />
@@ -66,9 +66,7 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".LoginActivity" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" >

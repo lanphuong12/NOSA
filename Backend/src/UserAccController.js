@@ -11,6 +11,13 @@ const login = async (req, res) => {
 
 }
 
+const GetUserAccByIdU = async (req, res) => {
+
+    const User = await dao.sequelize.query("exec GetUserAccByIdU @idUser= '" + req.body.id_user + "'", { raw: true, nest: true })
+    return res.status(200).json(User[0])
+
+}
+
 const checkPhone = async (req, res) => {
 
     const phone = await dao.sequelize.query("exec CheckPhone @phone= '" + req.body.dienthoai + "'", { raw: true, nest: true })
@@ -61,5 +68,6 @@ module.exports = {
     checkPhone,
     createUser,
     changePassword,
-    UpdateUserAcc
+    UpdateUserAcc,
+    GetUserAccByIdU
 }
