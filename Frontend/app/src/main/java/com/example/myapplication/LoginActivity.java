@@ -55,12 +55,12 @@ public class LoginActivity extends AppCompatActivity {
                     int role = response.body().getUserAcc().getRole();
                     if (role== 1){ // 1 is HR
                         Intent intent1 = new Intent(LoginActivity.this, HrHomeActivity.class);
-                        intent1.putExtra("idUserAcc", user.getIdUser());
+                        intent1.putExtra("idUserAcc", response.body().getUserAcc().getIdUser());
                         startActivity(intent1);
                     }
                     if (role == 2){ // 2 is Applicant
                         Intent intent2 = new Intent(LoginActivity.this, ApplicantHomeActivity.class);
-                        intent2.putExtra("idUserAcc", user.getIdUser());
+                        intent2.putExtra("idUserAcc", response.body().getUserAcc().getIdUser());
                         startActivity(intent2);
                     }
                 }

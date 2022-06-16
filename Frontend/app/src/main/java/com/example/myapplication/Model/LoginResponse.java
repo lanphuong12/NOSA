@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class LoginResponse {
+
+    @SerializedName("UserAcc")
+    @Expose
     private UserAcc userAcc;
 
     public UserAcc getUserAcc() {

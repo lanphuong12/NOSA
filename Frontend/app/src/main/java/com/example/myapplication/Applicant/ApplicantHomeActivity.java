@@ -22,14 +22,14 @@ public class ApplicantHomeActivity extends AppCompatActivity {
     private ActionBar toolbar;
     BottomNavigationView btn;
 
-    int idUser = 2;
+    int idUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.applicant_home);
 
         Anhxa();
-//        GetData_intent();
+        GetData_intent();
 
         toolbar = getSupportActionBar();
 
@@ -69,9 +69,9 @@ public class ApplicantHomeActivity extends AppCompatActivity {
 
     }
 
-//    private void GetData_intent() {
-//        idUser = (int) getIntent().getSerializableExtra("idUserAcc");
-//    }
+    private void GetData_intent() {
+        idUser = (int) getIntent().getSerializableExtra("idUserAcc");
+    }
 
     private void Anhxa() {
         btn = findViewById(R.id.bt_navigation);
@@ -87,7 +87,7 @@ public class ApplicantHomeActivity extends AppCompatActivity {
     }
 
     public int getIdUser() {
-        idUser = 2;
+        idUser = (int) getIntent().getSerializableExtra("idUserAcc");
         return idUser;
     }
 }
