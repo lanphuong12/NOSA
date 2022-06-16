@@ -32,7 +32,7 @@ import retrofit2.Response;
 
 public class Applicant_Fragment_cvApplied extends Fragment {
 
-    ListView lv_savedJob;
+    ListView lv_appliedJob;
     AlliedJobAdapter AppliedJobAdapter;
     ArrayList<AppliedJob> mang_job;
 
@@ -49,7 +49,7 @@ public class Applicant_Fragment_cvApplied extends Fragment {
         getDataAppliedJob(User);
         initUI();
 
-        lv_savedJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv_appliedJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int idCV = mang_job.get(position).getIdNopcv();
@@ -84,10 +84,10 @@ public class Applicant_Fragment_cvApplied extends Fragment {
     }
 
     private void initUI() {
-        lv_savedJob = mView.findViewById(R.id.lv_savedjob);
+        lv_appliedJob = mView.findViewById(R.id.lv_jobapplied);
         mang_job = new ArrayList<>();
         AppliedJobAdapter = new AlliedJobAdapter(mang_job, getActivity());
-        lv_savedJob.setAdapter(AppliedJobAdapter);
+        lv_appliedJob.setAdapter(AppliedJobAdapter);
     }
 
 }

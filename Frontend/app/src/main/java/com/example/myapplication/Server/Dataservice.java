@@ -28,7 +28,8 @@ public interface Dataservice {
 
     @FormUrlEncoded
     @POST("login")
-    Call<UserAcc> Login(@Field("dienthoai") String Dienthoai, @Field("matkhau") String Matkhau);
+    Call<UserAcc> Login(@Field("dienthoai") String phone,
+                        @Field("matkhau") String pass);
 
     @FormUrlEncoded
     @POST("checkPhone")
@@ -80,7 +81,7 @@ public interface Dataservice {
     Call<List<Danhmucnganhnghe>> GetAllDanhmucnganhnghe();
 
     @FormUrlEncoded
-    @POST("applicant/getallnganhnghebtIdDMNN")
+    @POST("applicant/GetAllnganhngheByIdDMNN")
     Call<List<Nganhnghe>> GetAllNganhngheByIDdanhmuc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
 
     @FormUrlEncoded

@@ -50,7 +50,7 @@ public class JobtoApplicantAdapter extends BaseAdapter {
         JobtoApplicantAdapter.ViewHolder viewHolder = null;
         if (convertView == null){
             viewHolder = new JobtoApplicantAdapter.ViewHolder();
-            convertView = mInflater.inflate(R.layout.danhmucnganhnghe_adapter,null);
+            convertView = mInflater.inflate(R.layout.job_adapter,null);
             viewHolder.logoCompany = (ImageView) convertView.findViewById(R.id.logoCompany);
             viewHolder.nameCompany = (TextView) convertView.findViewById(R.id.tv_namecompany);
             viewHolder.nameJob = (TextView) convertView.findViewById(R.id.tv_namejob);
@@ -74,7 +74,7 @@ public class JobtoApplicantAdapter extends BaseAdapter {
         viewHolder.nameJob.setText(congviec.getTenjob());
         viewHolder.address.setText(congviec.getDiachicty());
         viewHolder.salary.setText(congviec.getMinsalary() + " - " + congviec.getMaxsalary());
-        viewHolder.amount.setText(congviec.getSoluongtuyendung());
+        viewHolder.amount.setText(congviec.getSoluongtuyendung().toString());
         viewHolder.styleJob.setText(congviec.getTenloaihinhcv());
         return convertView;
     }

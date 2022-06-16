@@ -11,16 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.Applicant.Adapter.DanhmucnganhngheAdapter;
 import com.example.myapplication.Applicant.Adapter.NganhngheQuantamAdapter;
 import com.example.myapplication.Applicant.ApplicantHomeActivity;
-import com.example.myapplication.Model.AppliedJob;
 import com.example.myapplication.Model.Danhmucnganhnghe;
 import com.example.myapplication.Model.Nganhnghe;
 import com.example.myapplication.Model.UserAcc;
@@ -41,7 +38,6 @@ public class Applicant_Fragment_Info extends Fragment implements NganhngheQuanta
     private View mView;
     ApplicantHomeActivity mAppHomActivity;
 
-    int Idser;
     UserAcc userAcc = new UserAcc();
     ImageView img_avatar;
     TextView tv_name, tv_age, tv_gender, tv_add, tv_email, tv_phone;
@@ -57,11 +53,15 @@ public class Applicant_Fragment_Info extends Fragment implements NganhngheQuanta
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        mAppHomActivity = (ApplicantHomeActivity) getActivity();
+        int Idser = mAppHomActivity.getIdUser();
         mView = inflater.inflate(R.layout.applicant_fragment_info, container, false);
+
         Anhxa();
-        Idser = mAppHomActivity.getIdUser();
         GetDataUse(Idser);
+
         GetDataDMNNByIdUser(Idser);
+
         return mView;
     }
 
@@ -76,8 +76,10 @@ public class Applicant_Fragment_Info extends Fragment implements NganhngheQuanta
                 for (Danhmucnganhnghe dm: dmn){
                     listDMNNQT.add(dm);
                 }
+
                 nganhngheQuantamAdapter.setData(listDMNNQT);
                 rcv_nganhngheqt.setAdapter(nganhngheQuantamAdapter);
+
             }
 
             @Override
@@ -93,7 +95,8 @@ public class Applicant_Fragment_Info extends Fragment implements NganhngheQuanta
         callback.enqueue(new Callback<UserAcc>() {
             @Override
             public void onResponse(Call<UserAcc> call, Response<UserAcc> response) {
-                userAcc = response.body();
+                userAcc = (UserAcc) response.body();
+
                 Picasso.get().load(userAcc.getAnh())
                         .placeholder(R.drawable.noimg)
                         .error(R.drawable.errorimg)
@@ -105,7 +108,6 @@ public class Applicant_Fragment_Info extends Fragment implements NganhngheQuanta
                 tv_email.setText(userAcc.getEmail());
                 tv_phone.setText(userAcc.getDienthoai());
             }
-
             @Override
             public void onFailure(Call<UserAcc> call, Throwable t) {
                 Toast.makeText(getActivity(), "Lấy dữ liệu thất bại ", Toast.LENGTH_SHORT).show();
@@ -127,7 +129,10 @@ public class Applicant_Fragment_Info extends Fragment implements NganhngheQuanta
         bt_skillU = mView.findViewById(R.id.bt_skills);
         rcv_nganhngheqt = mView.findViewById(R.id.lv_nganhnghequantam);
 
+        userAcc = new UserAcc();
+
         listDMNNQT = new ArrayList<>();
+        nganhngheQuantamAdapter = new NganhngheQuantamAdapter(listDMNNQT, this);
 
     }
 
@@ -136,13 +141,13 @@ public class Applicant_Fragment_Info extends Fragment implements NganhngheQuanta
         Danhmucnganhnghe dmnn = listDMNNQT.get(position);
         Dialog dialog=new Dialog(getActivity());
         dialog.setContentView(R.layout.list);
+        ListView lvDemo = dialog.findViewById(R.id.list_view_NNQT);
 
         ArrayList nganhnghes = new ArrayList();
-        nganhnghes = GetDataNNQTByIdUIdDMNN(Idser, dmnn.getIdDanhmucnganh());
+        nganhnghes = GetDataNNQTByIdUIdDMNN(mAppHomActivity.getIdUser(), dmnn.getIdDanhmucnganh());
 
         ArrayAdapter dsnn = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1, nganhnghes);
 
-        ListView lvDemo = dialog.findViewById(R.id.list_view_NNQT);
         lvDemo.setAdapter(dsnn);
 
         dialog.show();

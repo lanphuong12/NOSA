@@ -50,7 +50,8 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int idDM = mang_danhmucnn.get(position).getIdDanhmucnganh();
                 ArrayList<Nganhnghe> mang_nganhnghe = new ArrayList<>();
-                GetDataDanhsachNNByIDdanhmuc(idDM, mang_nganhnghe);
+                //GetDataDanhsachNNByIDdanhmuc(idDM, mang_nganhnghe);
+                DialogChooseNganhnghe(idDM);
 
             }
         });

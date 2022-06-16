@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText ed_phone, ed_pass;
     Button bt_forgotpass, bt_register, bt_login;
-    UserAcc user = new UserAcc();
+    UserAcc user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +40,14 @@ public class LoginActivity extends AppCompatActivity {
         ed_pass = findViewById(R.id.ed_pass);
         bt_forgotpass = findViewById(R.id.bt_forgotpass);
         bt_register = findViewById(R.id.bt_create);
-        bt_login = findViewById(R.id.bt_signin);
+        bt_login = findViewById(R.id.bt_login);
+        user = new UserAcc();
     }
 
-    public void Log_in(View view) {
-        String phone = ed_phone.getText().toString();
-        String pass = ed_pass.getText().toString();
+    public void Login(String phone, String pass){
         Dataservice dataservice = APIService.getService();
         Call<UserAcc> callback = dataservice.Login(phone, pass);
         callback.enqueue(new Callback<UserAcc>() {
-
             @Override
             public void onResponse(Call<UserAcc> call, Response<UserAcc> response) {
                 user = (UserAcc) response.body();
@@ -57,12 +55,13 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Phone and Pass wrong!! Please try again", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (user.getRole() == 1){ // 1 is HR
+                    int role = Integer.parseInt(user.getRole().toString());
+                    if (role== 1){ // 1 is HR
                         Intent intent1 = new Intent(LoginActivity.this, HrHomeActivity.class);
                         intent1.putExtra("idUserAcc", user.getIdUser());
                         startActivity(intent1);
                     }
-                    else if (user.getRole() == 2){ // 2 is Applicant
+                    if (role == 2){ // 2 is Applicant
                         Intent intent2 = new Intent(LoginActivity.this, ApplicantHomeActivity.class);
                         intent2.putExtra("idUserAcc", user.getIdUser());
                         startActivity(intent2);
@@ -72,10 +71,14 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserAcc> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Lấy dữ liệu thất bại ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Lấy dữ liệu thất bại!", Toast.LENGTH_SHORT).show();
             }
         });
-
+    }
+    public void Log_in(View view) {
+        String phone = ed_phone.getText().toString().trim();
+        String pass = ed_pass.getText().toString().trim();
+        Login(phone, pass);
     }
 
     public void Create_new(View view) {

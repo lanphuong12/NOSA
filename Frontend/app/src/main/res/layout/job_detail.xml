@@ -60,14 +60,14 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_jobdetail"
                 android:layout_width="wrap_content"
-                android:layout_height="22dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/button4"
                 android:text="Job detail" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_companydetail"
                 android:layout_width="wrap_content"
-                android:layout_height="22dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/button4"
                 android:text="Company"

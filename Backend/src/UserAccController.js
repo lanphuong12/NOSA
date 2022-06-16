@@ -6,15 +6,11 @@ const dao = require('../Dao/Connection')
 /*function*/
 const login = async (req, res) => {
 
-    const UserAcc = await dao.sequelize.query("exec LoginbyPhone @phone= '" + req.body.dienthoai + "', @password= '" + req.body.matkhau + "'", { raw: true, nest: true })
-    if (UserAcc.length == 0) {
-
-        return null;
-
-    } else {
-        console.log(UserAcc)
-        return res.status(200).send(UserAcc)
-    }
+    const User = await dao.sequelize.query("exec LoginbyPhone @phone= '" + req.body.dienthoai + "', @password= '" + req.body.matkhau + "'", { raw: true, nest: true })
+    
+    return res.status(200).json({
+        UserAcc: User
+    })
 
 }
 
