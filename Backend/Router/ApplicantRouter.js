@@ -6,7 +6,6 @@ const applicantController = require("../src/ApplicantController")
     //handles post request with url /api/login 
 
 router.post('/GetUserById', applicantController.GetUserById);
-router.post('/UpdateUserAcc', applicantController.UpdateUserAcc);
 router.get('/GetAllDanhmucnganhnghe', applicantController.GetAllDanhmucnganhnghe);
 router.post('/GetAllnganhngheByIdDMNN', applicantController.GetAllnganhngheByIdDMNN);
 router.post('/AddNganhnghequantam', applicantController.AddNganhnghequantam);

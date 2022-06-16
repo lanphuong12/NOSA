@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    tools:context=".Applicant.UpdateInfoPersionalActivity">
+    android:gravity="center">
 
     <LinearLayout
         android:orientation="vertical"
@@ -24,6 +23,13 @@
             android:textColor="@color/black"
             android:padding="3pt"/>
 
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:id="@+id/imv_avatar"
+                android:src="@drawable/noimg"/>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -45,7 +51,7 @@
                         android:textColor="@color/black"/>
 
                     <EditText
-                        android:id="@+id/et_namePH"
+                        android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="nhập họ và tên"
@@ -71,25 +77,20 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/role_applicant"
+                            android:id="@+id/rb_boy"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:onClick="onRadioButtonClicked"
                             android:text="Nam" />
 
                         <RadioButton
-                            android:id="@+id/role_hr"
+                            android:id="@+id/rb_girl"
                             android:layout_marginLeft="5dp"
+                            android:onClick="onRadioButtonClicked"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="Nữ" />
-
-                        <RadioButton
-                            android:id="@+id/role_both"
-                            android:layout_marginLeft="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Khác" />
                     </RadioGroup>
                 </TableRow>
 

@@ -34,7 +34,7 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
     DanhmucnganhngheAdapter danhmucnn_adapter;
     ListView lv_dmnn;
     ArrayList<Integer> arrIdnganhnghe;
-    Button btSaveDMNN;
+    Button btSaveDMNN, btcancel;
     int id_User;
 
     @Override
@@ -213,6 +213,8 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
         lv_dmnn.setAdapter(danhmucnn_adapter);
         arrIdnganhnghe = new ArrayList<>();;
         btSaveDMNN = findViewById(R.id.bt_savengangnghe);
+        btcancel = findViewById(R.id.cancel_button);
+        btcancel.setVisibility(View.INVISIBLE);
     }
 
     public void SaveNNquantam(View view) {
@@ -222,13 +224,27 @@ public class ChooseDanhmucnganhngheActivity extends AppCompatActivity {
         else{
             // thực hiện lưu lại danh sách ngành nghề quan tâm theo IDUser
             SaveNNquantamByIdUser(id_User);
-            Intent intent = new Intent(ChooseDanhmucnganhngheActivity.this, ExperienceApplicantActivity.class);
+            Intent intent = new Intent(ChooseDanhmucnganhngheActivity.this, AddExp.class);
             intent.putExtra("id_user", id_User);
             startActivity(intent);
         }
     }
 
     private void SaveNNquantamByIdUser(int IdU) {
+        for (int i =0; i<= arrIdnganhnghe.size(); i++){
+            Dataservice dataservice = APIService.getService();
+            Call<Void> callback = dataservice.SaveAllNganhngheQuantam(IdU, arrIdnganhnghe.get(i));
+            callback.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
 
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(ChooseDanhmucnganhngheActivity.this, "Thêm ngành nghề quan tâm thất bại! vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

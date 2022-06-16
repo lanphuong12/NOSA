@@ -46,12 +46,12 @@ public interface Dataservice {
     Call<List<Trinhdohocvan>> GetDataTrinhdohocvan();
 
     @FormUrlEncoded
-    @PUT("applicant/UpdateUserAcc")
+    @PUT("UpdateUserAcc")
     Call<UserAcc> UpdateAcc(@Field("id_user") Integer idUser,
                                   @Field("hoten") String ten,
                                   @Field("email") String email,
                                   @Field("gioitinh") String gender,
-                                  @Field("ngaysinh") Date birth,
+                                  @Field("ngaysinh") String birth,
                                   @Field("diachi") String address,
                                   @Field("id_trinhdo") Integer idTrinhdo,
                                   @Field("anh") String img);
@@ -84,6 +84,12 @@ public interface Dataservice {
     Call<List<Nganhnghe>> GetAllNganhngheByIDdanhmuc(@Field("id_danhmucnganh") Integer idDanhmucnganh);
 
     @FormUrlEncoded
+    @POST("applicant/AddNganhnghequantam")
+    Call<Void> SaveAllNganhngheQuantam(@Field("id_user") Integer id_User,
+                                       @Field("id_nganhngheid_nganhnghe") Integer id_nn);
+
+
+    @FormUrlEncoded
     @POST("applicant/GetJobtoApplicant")
     Call<List<Job>> GetJobToApplicant(@Field("id_user") Integer idUser);
 
@@ -94,6 +100,19 @@ public interface Dataservice {
     @FormUrlEncoded
     @POST("applicant/GetAppliedJob")
     Call<List<AppliedJob>> GetAppliedJob(@Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("applicant/GetUserById")
+    Call<UserAcc> GetDataUserByIdUser(@Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("applicant/GetDanhmucnganhNgheByIdUser")
+    Call<List<Danhmucnganhnghe>> GetDataDMNNByIdUser(@Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("applicant/GetNganhNgheByIdUserIddmnn")
+    Call<List<Nganhnghe>> GetDataNNByIdUserIdDMNN(@Field("id_user") Integer idUser,
+                                            @Field("id_danhmucnganh") Integer idDMNN);
 //
 //    @GET("Classes")
 //    Call<List<Class>> GetDataClass();

@@ -11,21 +11,6 @@ const GetUserById = async (req, res) => {
         return res.status(200).send(UserAcc)
 }
 
-const UpdateUserAcc = async (req, res) => {
-    const UserAcc = await dao.sequelize.query("exec Update_User @idUser= '" + req.body.id_user 
-    + "', @hoten= '" + req.body.hoten +"', @email= '" + req.body.email 
-    + "', @gender= '" + req.body.gioitinh + "', @birth= '" + req.body.ngaysinh 
-    + "', @address= '" + req.body.diachi + "', @trinhdo= '" + req.body.id_trinhdo 
-    + "', @anh = '" + req.body.anh + "'", { raw: true, nest: true })
-
-    if (UserAcc.length == 0) {
-        return null;
-    } else {
-        console.log(UserAcc)
-        return res.status(200).send(UserAcc)
-    }
-}
-
 const GetAllDanhmucnganhnghe = async (req, res) => {
 
     const listDanhmucnganhnghe= await dao.sequelize.query(
@@ -140,7 +125,6 @@ const GetJobtoApplicant = async (req, res) => {
         "exec JobtoApplicant @idUser= " + req.body.id_user +  "",
     { raw: true, nest: true }
     )
-    JobtoApplicant.logo = "https://datn-nosa.herokuapp.com/storage/uploads/LogoCompany/" + JobtoApplicant.logo
     return res.status(200).send(JobtoApplicant)
 }
 
@@ -209,7 +193,6 @@ const SaveJob = async (req, res) => {
 
 module.exports = {
     GetUserById,
-    UpdateUserAcc,
     GetAllDanhmucnganhnghe,
     GetAllnganhngheByIdDMNN,
     AddNganhnghequantam,

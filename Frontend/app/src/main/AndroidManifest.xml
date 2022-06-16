@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myapplication" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -43,15 +46,15 @@
         <activity
             android:name=".HR.HrHomeActivity"
             android:exported="false" />
-        <activity
-            android:name=".Applicant.ApplicantHomeActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Applicant.ApplicantHomeActivity"-->
+<!--            android:exported="false" />-->
 <!--        <activity-->
 <!--            android:name=".Applicant.ChooseDanhmucnganhngheActivity"-->
 <!--            android:exported="false" />-->
-        <activity
-            android:name=".Applicant.UpdateInfoPersionalActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Applicant.UpdateInfoPersionalActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ResertPass.ResertpassEnternewpassActivity"
             android:exported="false" />
@@ -67,7 +70,7 @@
         <!-- android:name=".LoginActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".Applicant.ChooseDanhmucnganhngheActivity"
+            android:name=".Applicant.ApplicantHomeActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

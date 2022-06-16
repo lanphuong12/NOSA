@@ -28,7 +28,7 @@
                 <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:id="@+id/img_ad_book"/>
+                    android:id="@+id/img_avatarU"/>
 
             </LinearLayout>
             <LinearLayout
@@ -39,7 +39,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/tv_ad_book"
+                    android:id="@+id/tv_nameU"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#292F5E"
@@ -97,6 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/bt_updateIn4"
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:text="Cập nhật thông tin"
@@ -267,6 +268,7 @@
                     android:textStyle="bold"/>
             </TableRow>
             <androidx.appcompat.widget.AppCompatButton
+                android:onClick="ExpUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -280,6 +282,7 @@
                 android:textColor="@color/purple_500"
                 android:id="@+id/bt_experiences"/>
             <androidx.appcompat.widget.AppCompatButton
+                android:onClick="SkillUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

@@ -1,4 +1,8 @@
 package com.example.myapplication.Applicant;
 
-public class ExperienceApplicantActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ExperienceApplicantActivity extends AppCompatActivity {
+
+
 }

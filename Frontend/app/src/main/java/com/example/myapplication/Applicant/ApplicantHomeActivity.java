@@ -70,7 +70,7 @@ public class ApplicantHomeActivity extends AppCompatActivity {
     }
 
     private void GetData_intent() {
-        idUser = (int) getIntent().getSerializableExtra("idUserAcc");
+        idUser = 2;
     }
 
     private void Anhxa() {

@@ -8,5 +8,6 @@ router.post('/login', accController.login);
 router.post('/checkPhone', accController.checkPhone);
 router.post('/changePassword', accController.changePassword);
 router.post('/createUserAcc', accController.createUser);
+router.post('/UpdateUserAcc', accController.UpdateUserAcc);
 // export router to use in index file
 module.exports = router;

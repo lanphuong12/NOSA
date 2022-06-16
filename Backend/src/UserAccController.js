@@ -50,10 +50,25 @@ const changePassword = async (req, res) => {
     }
 }
 
+const UpdateUserAcc = async (req, res) => {
+    const UserAcc = await dao.sequelize.query("exec Update_User @idUser= '" + req.body.id_user 
+    + "', @hoten= '" + req.body.hoten +"', @email= '" + req.body.email 
+    + "', @gender= '" + req.body.gioitinh + "', @birth= '" + req.body.ngaysinh 
+    + "', @address= '" + req.body.diachi + "', @trinhdo= '" + req.body.id_trinhdo 
+    + "', @anh = '" + req.body.anh + "'", { raw: true, nest: true })
+
+    if (UserAcc.length == 0) {
+        return null;
+    } else {
+        console.log(UserAcc)
+        return res.status(200).send(UserAcc)
+    }
+}
 
 module.exports = {
     login,
     checkPhone,
     createUser,
-    changePassword
+    changePassword,
+    UpdateUserAcc
 }
