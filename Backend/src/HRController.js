@@ -6,10 +6,10 @@ const dao = require('../Dao/Connection')
 /*function*/
 const GetApplicant = async (req, res) => {
 
-    const listDanhmucnganhnghe= await dao.sequelize.query(
-        `Exec GetAllDanhmucnganhnghe ` , { raw: true, nest: true }
+    const listApplicant = await dao.sequelize.query(
+        "exec GetApplicantAdapterForHR @idUser= '" + req.body.id_user + "'",
     )
-    return res.status(200).send(listDanhmucnganhnghe)
+    return res.status(200).send(listApplicant)
 
 }
 
@@ -18,7 +18,11 @@ const GetJobCreated = async (req, res) => {
 }
 
 const GetCompanyCreated = async (req, res) => {
-    
+    const listCompany= await dao.sequelize.query(
+        "exec GetCompanyCreatedByIdHR @idUser= '" + req.body.id_user + "'",
+    )
+    return res.status(200).send(listCompany)
+
 }
 
 // Get CV có trạng thái chờ duyệt / xem xét

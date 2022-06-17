@@ -146,6 +146,11 @@ public interface Dataservice {
                             @Field("id_congviec") Integer idJob,
                             @Field("CV") String cv,
                             @Field("ngaynop") Date ngaynop);
+
+    @FormUrlEncoded
+    @POST("job/GetApplicant")
+    Call<List<Job>> GetApplicant(@Field("id_skill") Integer idSkill);
+
 //
 //    @POST("students/searchHV/{word}")
 //    Call<List<Student>> SearchHV(String word);
