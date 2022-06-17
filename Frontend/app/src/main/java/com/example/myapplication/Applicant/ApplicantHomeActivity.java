@@ -6,13 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.myapplication.Applicant.Fragment.Applicant_Fragment_Info;
 import com.example.myapplication.Applicant.Fragment.Applicant_Fragment_cvApplied;
 import com.example.myapplication.Applicant.Fragment.Applicant_Fragment_main;
 import com.example.myapplication.Applicant.Fragment.Applicant_Fragment_savedJob;
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -28,11 +31,11 @@ public class ApplicantHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.applicant_home);
 
+
         Anhxa();
         GetData_intent();
 
         toolbar = getSupportActionBar();
-
         // Đặt Fragment mặc định
         toolbar.setTitle("Applicant Main");
         loadFragment(new Applicant_Fragment_main());
@@ -76,6 +79,25 @@ public class ApplicantHomeActivity extends AppCompatActivity {
     private void Anhxa() {
         btn = findViewById(R.id.bt_navigation);
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.log_out, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.logout:
+                Intent intent = new Intent(ApplicantHomeActivity.this, LoginActivity.class);
+                startActivity(intent);
+                break;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadFragment(Fragment fragment) {

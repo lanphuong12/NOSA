@@ -7,60 +7,70 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.Applicant.JobDetailActivity;
+import com.example.myapplication.Model.Job;
+import com.example.myapplication.Model.JobDetail;
 import com.example.myapplication.R;
+import com.example.myapplication.Server.APIService;
+import com.example.myapplication.Server.Dataservice;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link JobDetailFragment_JobIn4#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class JobDetailFragment_JobIn4 extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    TextView tv_namejob, tv_salary, tv_amount, tv_typejob, tv_timejob, tv_description;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public JobDetailFragment_JobIn4() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BlankFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static JobDetailFragment_JobIn4 newInstance(String param1, String param2) {
-        JobDetailFragment_JobIn4 fragment = new JobDetailFragment_JobIn4();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    JobDetailActivity mJopJobDetailActivity;
+    private View mView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.job_detail_fragment_job_in4, container, false);
+        mView = inflater.inflate(R.layout.job_detail_fragment_job_in4, container, false);
+        mJopJobDetailActivity = (JobDetailActivity) getActivity();
+        Anhxa();
+        int IdJob = mJopJobDetailActivity.getIdJob();
+        GetDataJobByIdJob(IdJob);
+        return mView;
+    }
+
+    private void GetDataJobByIdJob(int idJob) {
+        Dataservice dataservice = APIService.getService();
+        Call<JobDetail> callback = dataservice.GetJobByIdJob(idJob);
+        callback.enqueue(new Callback<JobDetail>() {
+            @Override
+            public void onResponse(Call<JobDetail> call, Response<JobDetail> response) {
+                JobDetail jobDetail = response.body();
+
+                tv_namejob.setText(jobDetail.getTenjob());
+                tv_salary.setText(jobDetail.getMinsalary() + "đ - " +jobDetail.getMaxsalary()+"đ");
+                tv_amount.setText(jobDetail.getSoluongtuyendung().toString());
+                tv_typejob.setText(jobDetail.getTenloaihinhcv());
+                tv_timejob.setText(jobDetail.getTenloaicv());
+                tv_description.setText(jobDetail.getMota());
+
+            }
+
+            @Override
+            public void onFailure(Call<JobDetail> call, Throwable t) {
+                Toast.makeText(mJopJobDetailActivity, "Lấy dữ liệu thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void Anhxa() {
+        tv_namejob = mView.findViewById(R.id.tv_namejob);
+        tv_salary = mView.findViewById(R.id.tv_salary);
+        tv_amount = mView.findViewById(R.id.tv_soluongtuyendung);
+        tv_typejob = mView.findViewById(R.id.tv_loaihinhcongviec);
+        tv_timejob = mView.findViewById(R.id.tv_loaicongviec);
+        tv_description = mView.findViewById(R.id.tv_jobdescription);
     }
 }

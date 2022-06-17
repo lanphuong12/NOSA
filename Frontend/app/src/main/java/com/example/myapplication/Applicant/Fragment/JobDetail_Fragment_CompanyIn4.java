@@ -7,60 +7,74 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.Applicant.JobDetailActivity;
+import com.example.myapplication.Model.Company;
+import com.example.myapplication.Model.JobDetail;
 import com.example.myapplication.R;
+import com.example.myapplication.Server.APIService;
+import com.example.myapplication.Server.Dataservice;
+import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link JobDetail_Fragment_CompanyIn4#newInstance} factory method to
- * create an instance of this fragment.
- */
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class JobDetail_Fragment_CompanyIn4 extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public JobDetail_Fragment_CompanyIn4() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment JobDetail_Fragment_CompanyIn4.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static JobDetail_Fragment_CompanyIn4 newInstance(String param1, String param2) {
-        JobDetail_Fragment_CompanyIn4 fragment = new JobDetail_Fragment_CompanyIn4();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    TextView tv_namecty, tv_addCty, tv_emailCty, tv_phoneCty, tv_urlcty, tv_ctydescription;
+    ImageView img_logocompany;
+    JobDetailActivity mJopJobDetailActivity;
+    private View mView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.job_detail_fragment_company_in4, container, false);
+        mView = inflater.inflate(R.layout.job_detail_fragment_company_in4, container, false);
+        mJopJobDetailActivity = (JobDetailActivity) getActivity();
+        Anhxa();
+        int IdJob = mJopJobDetailActivity.getIdJob();
+        GetDataCompanyByIdJob(IdJob);
+        return mView;
+    }
+
+    private void GetDataCompanyByIdJob(int idJob) {
+        Dataservice dataservice = APIService.getService();
+        Call<Company> callback = dataservice.GetCompanybyIdJob(idJob);
+        callback.enqueue(new Callback<Company>() {
+            @Override
+            public void onResponse(Call<Company> call, Response<Company> response) {
+                Company cty = response.body();
+
+                Picasso.get().load(cty.getLogo())
+                        .placeholder(R.drawable.noimg)
+                        .error(R.drawable.errorimg)
+                        .into(img_logocompany);
+                tv_namecty.setText(cty.getTen());
+                tv_addCty.setText(cty.getDiachi());
+                tv_emailCty.setText(cty.getEmail());
+                tv_phoneCty.setText(cty.getDienthoai());
+                tv_urlcty.setText(cty.getUrlWebsite());
+                tv_ctydescription.setText(cty.getGioithieu());
+
+            }
+
+            @Override
+            public void onFailure(Call<Company> call, Throwable t) {
+                Toast.makeText(mJopJobDetailActivity, "Lấy dữ liệu thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void Anhxa() {
+        img_logocompany = mView.findViewById(R.id.img_logocompa);
+        tv_namecty = mView.findViewById(R.id.tv_namecty);
+        tv_addCty = mView.findViewById(R.id.tv_addresscompany);
+        tv_emailCty = mView.findViewById(R.id.tv_emailcompany);
+        tv_phoneCty = mView.findViewById(R.id.tv_phonecompany);
+        tv_urlcty = mView.findViewById(R.id.tv_urlwebsite);
+        tv_ctydescription = mView.findViewById(R.id.tv_companydescription);
     }
 }

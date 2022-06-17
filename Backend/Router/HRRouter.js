@@ -4,7 +4,7 @@ var router = express.Router();
     //requie teacher controller
 const hrController = require("../src/HRController")
     //handles post request with url /api/login
-router.get('/GetApplicant', hrController.GetApplicant);
+router.post('/GetApplicant', hrController.GetApplicant);
 router.get('/GetJobCreated', hrController.GetJobCreated);
 router.get('/GetCompanyCreated', hrController.GetCompanyCreated);
 router.get('/GetAllCVApplied', hrController.GetAllCVApplied);

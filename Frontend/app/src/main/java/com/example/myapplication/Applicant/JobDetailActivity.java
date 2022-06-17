@@ -112,7 +112,7 @@ public class JobDetailActivity extends AppCompatActivity implements SkillJob_ada
         transaction.commit();
     }
 
-    public int getIdUser() {
+    public int getIdJob() {
         congviec = (Job) getIntent().getSerializableExtra("id_job");
         return congviec.getIdCongviec();
     }
