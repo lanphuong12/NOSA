@@ -3,9 +3,11 @@ package com.example.myapplication.HR.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.example.myapplication.Applicant.JobDetailActivity;
 import com.example.myapplication.HR.Adapter.CandidateAdapter;
 import com.example.myapplication.HR.HrHomeActivity;
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.Model.UserAcc;
 import com.example.myapplication.R;
 import com.example.myapplication.Server.APIService;
@@ -48,6 +51,27 @@ public class HR_Fragment_main extends Fragment {
         hrHomeActivity = (HrHomeActivity) getActivity();
         int User = hrHomeActivity.getIdUser();
         initUI();
+
+        Toolbar TopActivityToolbar = mView.findViewById(R.id.toolbar);
+        TopActivityToolbar.setTitle("HR main");
+        TopActivityToolbar.inflateMenu(R.menu.log_out);
+
+        // and finally set click listener
+        TopActivityToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.logout:
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    default:break;
+                }
+                return false;
+            }
+        });
+
         getDataCandidate(User);
 
         lv_candidate.setOnItemClickListener(new AdapterView.OnItemClickListener() {

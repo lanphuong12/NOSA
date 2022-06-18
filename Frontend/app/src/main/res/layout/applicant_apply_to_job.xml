@@ -7,286 +7,301 @@
     android:layout_height="match_parent"
     tools:context=".Applicant.Apply_to_job">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:layout_above="@+id/bt_applyJob">
-        <LinearLayout
+        android:layout_above="@+id/bt_applyJob"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@drawable/button_selector"
+            android:id="@+id/toolbar"/>
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/button3"
-            android:gravity="center"
-            android:orientation="vertical">
-
+            android:fillViewport="true"
+            android:id="@+id/layout"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_height="match_parent"
+                android:background="@drawable/button3"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/imgv_logocty"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:textSize="8pt" />
-                    <TextView
-                        android:id="@+id/tv_namejob"
-                        android:layout_marginLeft="3dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tên job hiển thị ở đây!"
-                        android:textColor="@color/purple_500"
-                        android:textSize="9pt"
-                        android:textStyle="bold" />
-                </TableRow>
-
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/tv_namecompany"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tên công ty hiển thị ở đây"
-                        android:textColor="@color/black"
-                        android:textSize="8pt"
-                        android:textStyle="bold" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/posion"
-                        android:backgroundTint="#C6000000" />
-
-                    <TextView
-                        android:id="@+id/tv_addresscompany"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Địa chỉ hiển thị ở đây"
-                        android:textColor="#C6000000"
-                        android:textSize="5pt" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/salary"
-                        android:backgroundTint="#C6000000" />
-
-                    <TextView
-                        android:id="@+id/tv_salary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Lương hiển thị ở đây"
-                        android:textColor="#C6000000"
-                        android:textSize="5pt" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/list_skill"
-                        android:backgroundTint="#C6000000" />
-
-                    <TextView
-                        android:id="@+id/tv_typeJob"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Loại công việc hiển thị ở đây"
-                        android:textColor="#C6000000"
-                        android:textSize="5pt" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/people"
-                        android:backgroundTint="#C6000000" />
-
-                    <TextView
-                        android:id="@+id/tv_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Số lượng tuyển dụng hiển thị ở đây"
-                        android:textColor="#C6000000"
-                        android:textSize="5pt" />
-                </TableRow>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/white"
-                android:padding="10dp">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/bt_uploadCV"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:text="Upload your CV"
-                    android:textColor="@color/purple_700"
-                    android:textSize="18dp"
-                    android:onClick="UploadCV"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:padding="10dp">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
 
-                <TextView
+                        <ImageView
+                            android:id="@+id/imgv_logocty"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:textSize="8pt" />
+                        <TextView
+                            android:id="@+id/tv_namejob"
+                            android:layout_marginLeft="3dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tên job hiển thị ở đây!"
+                            android:textColor="@color/purple_500"
+                            android:textSize="9pt"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_namecompany"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tên công ty hiển thị ở đây"
+                            android:textColor="@color/black"
+                            android:textSize="8pt"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/posion"
+                            android:backgroundTint="#C6000000" />
+
+                        <TextView
+                            android:id="@+id/tv_addresscompany"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Địa chỉ hiển thị ở đây"
+                            android:textColor="#C6000000"
+                            android:textSize="5pt" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/salary"
+                            android:backgroundTint="#C6000000" />
+
+                        <TextView
+                            android:id="@+id/tv_salary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Lương hiển thị ở đây"
+                            android:textColor="#C6000000"
+                            android:textSize="5pt" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/list_skill"
+                            android:backgroundTint="#C6000000" />
+
+                        <TextView
+                            android:id="@+id/tv_typeJob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Loại công việc hiển thị ở đây"
+                            android:textColor="#C6000000"
+                            android:textSize="5pt" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/people"
+                            android:backgroundTint="#C6000000" />
+
+                        <TextView
+                            android:id="@+id/tv_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Số lượng tuyển dụng hiển thị ở đây"
+                            android:textColor="#C6000000"
+                            android:textSize="5pt" />
+                    </TableRow>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Your CV"
-                    android:textColor="@color/black"
-                    android:textSize="8pt"
-                    android:textStyle="bold" />
-                <ImageView
-                    android:id="@+id/img_cvtoapply"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black"/>
-            </LinearLayout>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/white"
+                    android:padding="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:padding="10dp">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/bt_uploadCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:text="Upload your CV"
+                        android:textColor="@color/purple_700"
+                        android:textSize="18dp"
+                        android:onClick="UploadCV"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Information"
+                        android:text="Your CV"
                         android:textColor="@color/black"
                         android:textSize="8pt"
                         android:textStyle="bold" />
-                </TableRow>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="left"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fullname: "
-                        android:textColor="#C6000000"
-                        android:textSize="6pt" />
-
-                    <EditText
-                        android:id="@+id/edt_fullname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/botron_edittext"
-                        android:textSize="17dp" />
+                    <ImageView
+                        android:id="@+id/img_cvtoapply"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="left"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Email"
-                        android:textColor="#C6000000"
-                        android:textSize="6pt" />
+                        android:gravity="center">
 
-                    <EditText
-                        android:id="@+id/edt_email"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Information"
+                            android:textColor="@color/black"
+                            android:textSize="8pt"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/botron_edittext"
-                        android:textSize="17dp" />
-                </LinearLayout>
+                        android:gravity="left"
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="left"
-                    android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fullname: "
+                            android:textColor="#C6000000"
+                            android:textSize="6pt" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Phone number "
-                        android:textColor="#C6000000"
-                        android:textSize="6pt" />
+                        <EditText
+                            android:id="@+id/edt_fullname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/botron_edittext"
+                            android:textSize="17dp" />
+                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/edt_phone"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/botron_edittext"
-                        android:textSize="17dp" />
-                </LinearLayout>
+                        android:gravity="left"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:textColor="#C6000000"
+                            android:textSize="6pt" />
+
+                        <EditText
+                            android:id="@+id/edt_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/botron_edittext"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone number "
+                            android:textColor="#C6000000"
+                            android:textSize="6pt" />
+
+                        <EditText
+                            android:id="@+id/edt_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/botron_edittext"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
+
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_applyJob"

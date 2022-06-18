@@ -1,6 +1,7 @@
 package com.example.myapplication.Applicant;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
@@ -8,6 +9,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.Model.Job;
 import com.example.myapplication.Model.UserAcc;
 import com.example.myapplication.R;
@@ -51,6 +55,7 @@ public class Apply_to_job extends AppCompatActivity {
     Job congviec;
     int IdUser;
 
+    private ActionBar toolbar;
     private static final int PICK_FILE = 1;
     Uri UriImage;
     String miUrlOk;
@@ -61,6 +66,8 @@ public class Apply_to_job extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.applicant_apply_to_job);
+
+        toolbar = getSupportActionBar();
 
         GetDataIntent();
         Anhxa();
@@ -81,6 +88,27 @@ public class Apply_to_job extends AppCompatActivity {
 
         GetDataUserByIdUer(IdUser);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.home:
+                Intent intent = new Intent(Apply_to_job.this, ApplicantHomeActivity.class);
+                intent.putExtra("idUserAcc", IdUser);
+                startActivity(intent);
+                break;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void GetDataUserByIdUer(int idUser) {

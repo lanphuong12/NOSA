@@ -10,33 +10,42 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="5dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_selector"
+            android:minHeight="?attr/actionBarSize" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:padding="10dp">
+
             <AutoCompleteTextView
+                android:id="@+id/edt_search_word"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:hint="Nhập từ cần tìm"
                 android:completionThreshold="1"
-                android:textSize="15dp"
+                android:hint="Nhập từ cần tìm"
                 android:textColor="@color/black"
-                android:id="@+id/edt_search_word"/>
+                android:textSize="15dp" />
 
             <ImageButton
-                android:layout_marginLeft="10dp"
+                android:id="@+id/imgbt_search"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/search"
-                android:id="@+id/imgbt_search"/>
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/search" />
 
         </LinearLayout>
+
         <ListView
+            android:id="@+id/lv_candidate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/candidate_adapter"
-            android:id="@+id/lv_candidate"/>
+            tools:listitem="@layout/candidate_adapter" />
     </LinearLayout>
 </FrameLayout>

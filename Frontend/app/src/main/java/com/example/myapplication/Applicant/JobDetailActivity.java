@@ -1,5 +1,6 @@
 package com.example.myapplication.Applicant;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -7,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -43,13 +46,14 @@ public class JobDetailActivity extends AppCompatActivity implements SkillJob_ada
     ArrayList<SkillJob> listSkillJob = new ArrayList<>();
     SkillJob_adapter skillJob_adapter;
     int IdUser;
-
+    private ActionBar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.job_detail);
         Anhxa();
         GetDataIntent();
+        toolbar = getSupportActionBar();
         GetSkillJobbyIdJob(congviec.getIdCongviec());
 
         Picasso.get().load(congviec.getLogo())
@@ -61,6 +65,27 @@ public class JobDetailActivity extends AppCompatActivity implements SkillJob_ada
 
         loadFragment(new JobDetailFragment_JobIn4());
         bt_jobdetail.setBackgroundResource(R.drawable.button5);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.home:
+                Intent intent = new Intent(JobDetailActivity.this, ApplicantHomeActivity.class);
+                intent.putExtra("idUserAcc", IdUser);
+                startActivity(intent);
+                break;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void GetDataIntent() {

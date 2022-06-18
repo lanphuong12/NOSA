@@ -3,6 +3,7 @@ package com.example.myapplication.Applicant;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -22,7 +23,6 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class ApplicantHomeActivity extends AppCompatActivity {
 
-    private ActionBar toolbar;
     BottomNavigationView btn;
 
     int idUser;
@@ -31,13 +31,9 @@ public class ApplicantHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.applicant_home);
 
-
         Anhxa();
         GetData_intent();
 
-        toolbar = getSupportActionBar();
-        // Đặt Fragment mặc định
-        toolbar.setTitle("Applicant Main");
         loadFragment(new Applicant_Fragment_main());
 
         btn.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -46,22 +42,18 @@ public class ApplicantHomeActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.applicantmain:
-                        toolbar.setTitle("Trang chủ");
                         fragment = new Applicant_Fragment_main();
                         loadFragment(fragment);
                         return true;
                     case R.id.savedjob:
-                        toolbar.setTitle("Job saved");
                         fragment = new Applicant_Fragment_savedJob();
                         loadFragment(fragment);
                         return true;
                     case R.id.appliedcv:
-                        toolbar.setTitle("CV applied");
                         fragment = new Applicant_Fragment_cvApplied();
                         loadFragment(fragment);
                         return true;
                     case R.id.info:
-                        toolbar.setTitle("Information");
                         fragment = new Applicant_Fragment_Info();
                         loadFragment(fragment);
                         return true;
@@ -79,25 +71,6 @@ public class ApplicantHomeActivity extends AppCompatActivity {
     private void Anhxa() {
         btn = findViewById(R.id.bt_navigation);
 
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.log_out, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.logout:
-                Intent intent = new Intent(ApplicantHomeActivity.this, LoginActivity.class);
-                startActivity(intent);
-                break;
-            default:break;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void loadFragment(Fragment fragment) {

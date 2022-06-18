@@ -5,10 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".HR.Fragment.HR_Fragment_Companymanager">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@drawable/button_selector"
+            android:id="@+id/toolbar"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lv_companymanager"/>
+    </LinearLayout>
 
 </FrameLayout>

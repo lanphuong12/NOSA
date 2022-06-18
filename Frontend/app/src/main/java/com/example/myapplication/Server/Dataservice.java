@@ -108,6 +108,11 @@ public interface Dataservice {
     Call<List<AppliedJob>> GetAppliedJob(@Field("id_user") Integer idUser);
 
     @FormUrlEncoded
+    @POST("applicant/GetAppliedJobbyStatus")
+    Call<List<AppliedJob>> GetAppliedJobByStatus(@Field("id_user") Integer idUser,
+                                                 @Field("trangthai") Integer status);
+
+    @FormUrlEncoded
     @POST("applicant/GetUserById")
     Call<UserAcc> GetDataUserByIdUser(@Field("id_user") Integer idUser);
 

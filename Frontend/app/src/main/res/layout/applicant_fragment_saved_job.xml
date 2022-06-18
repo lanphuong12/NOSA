@@ -6,9 +6,20 @@
     tools:context=".Applicant.Fragment.Applicant_Fragment_savedJob">
 
     <!-- TODO: Update blank fragment layout -->
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lv_savedjob"/>
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@drawable/button_selector"
+            android:id="@+id/toolbar"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lv_savedjob"/>
+    </LinearLayout>
 
 </FrameLayout>
