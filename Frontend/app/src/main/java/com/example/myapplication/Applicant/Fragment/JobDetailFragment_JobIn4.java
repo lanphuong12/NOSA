@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ import retrofit2.Response;
 
 public class JobDetailFragment_JobIn4 extends Fragment {
 
-    TextView tv_namejob, tv_salary, tv_amount, tv_typejob, tv_timejob, tv_description;
+    TextView tv_requestjob, tv_salary, tv_amount, tv_typejob, tv_timejob, tv_description;
 
     JobDetailActivity mJopJobDetailActivity;
     private View mView;
@@ -49,12 +50,13 @@ public class JobDetailFragment_JobIn4 extends Fragment {
             public void onResponse(Call<JobDetail> call, Response<JobDetail> response) {
                 JobDetail jobDetail = response.body();
 
-                tv_namejob.setText(jobDetail.getTenjob());
-                tv_salary.setText(jobDetail.getMinsalary() + "đ - " +jobDetail.getMaxsalary()+"đ");
-                tv_amount.setText(jobDetail.getSoluongtuyendung().toString());
-                tv_typejob.setText(jobDetail.getTenloaihinhcv());
-                tv_timejob.setText(jobDetail.getTenloaicv());
-                tv_description.setText(jobDetail.getMota());
+
+                tv_salary.setText("Lương: "+ jobDetail.getMinsalary() + "đ - " +jobDetail.getMaxsalary()+"đ");
+                tv_amount.setText("Số lượng tuyển dụng: "+ jobDetail.getSoluongtuyendung().toString());
+                tv_typejob.setText("Loại hình công việc: "+jobDetail.getTenloaihinhcv());
+                tv_timejob.setText("Loại công việc: "+ jobDetail.getTenloaicv());
+                tv_description.setText(Html.fromHtml(jobDetail.getMota()));
+                tv_requestjob.setText(Html.fromHtml(jobDetail.getKinhnghiemchitiet()));
 
             }
 
@@ -66,11 +68,11 @@ public class JobDetailFragment_JobIn4 extends Fragment {
     }
 
     private void Anhxa() {
-        tv_namejob = mView.findViewById(R.id.tv_namejob);
         tv_salary = mView.findViewById(R.id.tv_salary);
         tv_amount = mView.findViewById(R.id.tv_soluongtuyendung);
         tv_typejob = mView.findViewById(R.id.tv_loaihinhcongviec);
         tv_timejob = mView.findViewById(R.id.tv_loaicongviec);
         tv_description = mView.findViewById(R.id.tv_jobdescription);
+        tv_requestjob = mView.findViewById(R.id.tv_expJob);
     }
 }

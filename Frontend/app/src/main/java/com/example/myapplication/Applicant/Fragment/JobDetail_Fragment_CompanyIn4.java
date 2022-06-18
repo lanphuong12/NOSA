@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class JobDetail_Fragment_CompanyIn4 extends Fragment {
-    TextView tv_namecty, tv_addCty, tv_emailCty, tv_phoneCty, tv_urlcty, tv_ctydescription;
-    ImageView img_logocompany;
+    TextView  tv_addCty, tv_emailCty, tv_phoneCty, tv_urlcty, tv_ctydescription;
     JobDetailActivity mJopJobDetailActivity;
     private View mView;
     @Override
@@ -48,16 +48,11 @@ public class JobDetail_Fragment_CompanyIn4 extends Fragment {
             public void onResponse(Call<Company> call, Response<Company> response) {
                 Company cty = response.body();
 
-                Picasso.get().load(cty.getLogo())
-                        .placeholder(R.drawable.noimg)
-                        .error(R.drawable.errorimg)
-                        .into(img_logocompany);
-                tv_namecty.setText(cty.getTen());
-                tv_addCty.setText(cty.getDiachi());
-                tv_emailCty.setText(cty.getEmail());
-                tv_phoneCty.setText(cty.getDienthoai());
+                tv_addCty.setText("Địa chỉ: "+ cty.getDiachi());
+                tv_emailCty.setText("Email: "+ cty.getEmail());
+                tv_phoneCty.setText("Số điện thoại: "+ cty.getDienthoai());
                 tv_urlcty.setText(cty.getUrlWebsite());
-                tv_ctydescription.setText(cty.getGioithieu());
+                tv_ctydescription.setText(Html.fromHtml(cty.getGioithieu()));
 
             }
 
@@ -69,8 +64,6 @@ public class JobDetail_Fragment_CompanyIn4 extends Fragment {
     }
 
     private void Anhxa() {
-        img_logocompany = mView.findViewById(R.id.img_logocompa);
-        tv_namecty = mView.findViewById(R.id.tv_namecty);
         tv_addCty = mView.findViewById(R.id.tv_addresscompany);
         tv_emailCty = mView.findViewById(R.id.tv_emailcompany);
         tv_phoneCty = mView.findViewById(R.id.tv_phonecompany);

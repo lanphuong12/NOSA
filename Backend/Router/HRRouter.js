@@ -11,5 +11,6 @@ router.post('/GetAllCVApplied', hrController.GetAllCVApplied);
 router.post('/GetAllCVAppliedByIdJob', hrController.GetAllCVAppliedByIdJob);
 router.post('/UpdateStatusCV', hrController.UpdateStatusCV);
 router.post('/GetCVbyStatus', hrController.GetCVbyStatus);
+router.post('/GetJobByIdCompany', hrController.GetJobByIdCty);
 // export router to use in index file
 module.exports = router;

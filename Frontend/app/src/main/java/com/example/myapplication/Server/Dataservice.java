@@ -6,6 +6,7 @@ import com.example.myapplication.Model.Danhmucnganhnghe;
 import com.example.myapplication.Model.ExpUser;
 import com.example.myapplication.Model.Job;
 import com.example.myapplication.Model.JobDetail;
+import com.example.myapplication.Model.Jobnew;
 import com.example.myapplication.Model.Kynang;
 import com.example.myapplication.Model.Loaikynang;
 import com.example.myapplication.Model.LoginResponse;
@@ -145,10 +146,39 @@ public interface Dataservice {
     Call<Void> ApplyCVtoJob(@Field("id_user") Integer idUser,
                             @Field("id_congviec") Integer idJob,
                             @Field("CV") String cv,
-                            @Field("ngaynop") Date ngaynop);
+                            @Field("ngaynop") String ngaynop);
 
     @FormUrlEncoded
     @POST("hr/GetApplicant")
     Call<List<UserAcc>> GetApplicant(@Field("id_user") Integer idUser);
 
+    @FormUrlEncoded
+    @POST("hr/GetJobCreated")
+    Call<List<Job>> GetAllJobCreatedbyidHR(@Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("hr/GetCompanyCreated")
+    Call<List<Company>> GetAllCompanyCreatedbyidHR(@Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("hr/GetAllCVApplied")
+    Call<List<AppliedJob>> GetAllCVAppliedtoHRJob(@Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("hr/UpdateStatusCV")
+    Call<Void> UpdateStatusCV(@Field("id_nopcv") Integer idCV,
+                              @Field("trangthai") Integer status);
+
+    @FormUrlEncoded
+    @POST("hr/GetAllCVAppliedByIdJob")
+    Call<List<AppliedJob>> GetCVByIdJob(@Field("id_congviec") Integer id_cviec);
+
+    @FormUrlEncoded
+    @POST("hr/GetCVbyStatus")
+    Call<List<AppliedJob>> GetAllCVAppliedbyStatustoHRJob(@Field("trangthai") Integer status,
+                                                          @Field("id_user") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("hr/GetAllCVAppliedByIdJob")
+    Call<List<Jobnew>> GetJobByIdCty(@Field("id_congty") Integer cty);
 }

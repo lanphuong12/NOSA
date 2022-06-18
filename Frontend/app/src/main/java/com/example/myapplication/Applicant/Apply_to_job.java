@@ -51,8 +51,6 @@ public class Apply_to_job extends AppCompatActivity {
     Job congviec;
     int IdUser;
 
-    public static final DateFormat yearFormat = new SimpleDateFormat("yyyy-MM-dd");
-
     private static final int PICK_FILE = 1;
     Uri UriImage;
     String miUrlOk;
@@ -77,9 +75,12 @@ public class Apply_to_job extends AppCompatActivity {
         tv_namecompany.setText(congviec.getTencty());
         tv_namejob.setText(congviec.getTenjob());
         tv_address.setText(congviec.getDiachicty());
-        tv_salary.setText(congviec.getMinsalary() +"đ -"+congviec.getMaxsalary()+"đ");
+        tv_salary.setText(congviec.getMinsalary() + "đ -" + congviec.getMaxsalary() + "đ");
         tv_typejob.setText(congviec.getTenloaihinhcv());
         tv_amount.setText(congviec.getSoluongtuyendung().toString());
+
+        GetDataUserByIdUer(IdUser);
+
     }
 
     private void GetDataUserByIdUer(int idUser) {
@@ -126,23 +127,20 @@ public class Apply_to_job extends AppCompatActivity {
     }
 
 
-    public void ApplyCVtoJob(View view) throws ParseException {
+    public void ApplyCVtoJob(View view){
         uploadCV();
-        Date currentDate = new Date(System.currentTimeMillis());
-        String date = yearFormat.format(currentDate);
-
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-DD");
-        Date ngaynopcv = (Date)formatter.parse(date);
-        System.out.println("Thông tin chi tiết" +IdUser + " - " + congviec.getIdCongviec() +" - "+ ngaynopcv);
+        Date todayDate = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String todayString = formatter.format(todayDate);
 
         Dataservice dataservice = APIService.getService();
-        Call<Void> callback = dataservice.ApplyCVtoJob(IdUser, congviec.getIdCongviec(), miUrlOk, ngaynopcv);
+        Call<Void> callback = dataservice.ApplyCVtoJob(IdUser, congviec.getIdCongviec(), miUrlOk, todayString);
         callback.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(Apply_to_job.this, "Nộp CV thành công!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Apply_to_job.this, ApplicantHomeActivity.class);
-                intent.putExtra("idUserAcc",IdUser);
+                intent.putExtra("idUserAcc", IdUser);
                 startActivity(intent);
             }
 
@@ -151,6 +149,7 @@ public class Apply_to_job extends AppCompatActivity {
                 Toast.makeText(Apply_to_job.this, "Nộp CV thất bại! Vui lòng thử lại!", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     public void UploadCV(View view) {

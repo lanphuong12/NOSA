@@ -16,20 +16,6 @@
             android:padding="10dp"
             android:orientation="vertical">
             <TableRow
-                android:layout_width="match_parent"
-                android:gravity="center"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_namejob"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tên công việc hiển thị ở đây!"
-                    android:textStyle="bold"
-                    android:textColor="#0020D5"
-                    android:textSize="30dp" />
-            </TableRow>
-            <TableRow
                 android:gravity="center"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
@@ -120,7 +106,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -136,6 +122,30 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Job Descripton hiển thị ở đây"
+                    android:textColor="#000000"
+                    android:textStyle="italic"
+                    android:textSize="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yêu cầu kinh nghiệm"
+                    android:textStyle="bold"
+                    android:textColor="#0020D5"
+                    android:textSize="12pt" />
+
+                <TextView
+                    android:id="@+id/tv_expJob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Yêu cầu kinh nghiệm hiển thị ở đây"
                     android:textColor="#000000"
                     android:textStyle="italic"
                     android:textSize="20dp" />

@@ -53,6 +53,12 @@ const GetCVbyStatus = async (req, res) => {
     return res.status(200).send(listCV)
 }
 
+const GetJobByIdCty = async (req, res) => {
+    const listJob= await dao.sequelize.query(
+        "exec GetJobByIdCompany @idCty= '" + req.body.id_congty +  "'", { raw: true, nest: true })
+    return res.status(200).send(listJob)
+}
+
 module.exports = {
     GetApplicantforHr,
     GetJobCreated,
@@ -60,5 +66,6 @@ module.exports = {
     GetAllCVApplied,
     GetAllCVAppliedByIdJob,
     UpdateStatusCV,
-    GetCVbyStatus
+    GetCVbyStatus,
+    GetJobByIdCty
 }
