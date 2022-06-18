@@ -41,30 +41,30 @@ public class HrHomeActivity extends AppCompatActivity {
         toolbar = getSupportActionBar();
         // Đặt Fragment mặc định
         toolbar.setTitle("Applicant Main");
-        loadFragment(new Applicant_Fragment_main());
+        loadFragment(new HR_Fragment_main());
 
         btn.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment;
                 switch (item.getItemId()) {
-                    case R.id.applicantmain:
+                    case R.id.hrmain:
                         toolbar.setTitle("Trang chủ");
                         fragment = new HR_Fragment_main();
                         loadFragment(fragment);
                         return true;
-                    case R.id.savedjob:
-                        toolbar.setTitle("Job saved");
+                    case R.id.jobmanager:
+                        toolbar.setTitle("Quản lý công việc");
                         fragment = new HR_Fragment_CV_Manager();
                         loadFragment(fragment);
                         return true;
-                    case R.id.appliedcv:
-                        toolbar.setTitle("CV applied");
+                    case R.id.companymanager:
+                        toolbar.setTitle("Quản lý công ty");
                         fragment = new HR_Fragment_Companymanager();
                         loadFragment(fragment);
                         return true;
-                    case R.id.info:
-                        toolbar.setTitle("Information");
+                    case R.id.managercv:
+                        toolbar.setTitle("Quản lý CV");
                         fragment = new HR_Fragment_Jobmanager();
                         loadFragment(fragment);
                         return true;
@@ -79,7 +79,7 @@ public class HrHomeActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        btn = findViewById(R.id.bt_navigation);
+        btn = findViewById(R.id.navigation);
 
     }
     @Override

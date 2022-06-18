@@ -4,12 +4,11 @@ const account = require('../Model/User_Acc').account;
 const dao = require('../Dao/Connection')
 
 /*function*/
-const GetApplicant = async (req, res) => {
+const GetApplicantforHr = async (req, res) => {
 
-    const listApplicant = await dao.sequelize.query(
-        "exec GetApplicantAdapterForHR @idUser= '" + req.body.id_user + "'",
-    )
-    return res.status(200).send(listApplicant)
+    const listUngVien = await dao.sequelize.query(
+        "exec GetApplicantAdapterForHR @idUser= '" + req.body.id_user + "'", { raw: true, nest: true })
+    return res.status(200).json(listUngVien)
 
 }
 
@@ -43,7 +42,7 @@ const GetCVbyStatus = async (req, res) => {
 }
 
 module.exports = {
-    GetApplicant,
+    GetApplicantforHr,
     GetJobCreated,
     GetCompanyCreated,
     GetAllCVApplied,

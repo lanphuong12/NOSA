@@ -10,18 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.myapplication.Applicant.Adapter.DanhmucnganhngheAdapter;
 import com.example.myapplication.Applicant.Adapter.JobtoApplicantAdapter;
 import com.example.myapplication.Applicant.ApplicantHomeActivity;
-import com.example.myapplication.Applicant.ChooseDanhmucnganhngheActivity;
-import com.example.myapplication.Applicant.ExperienceApplicantActivity;
 import com.example.myapplication.Applicant.JobDetailActivity;
-import com.example.myapplication.Model.Danhmucnganhnghe;
 import com.example.myapplication.Model.Job;
 import com.example.myapplication.R;
 import com.example.myapplication.Server.APIService;

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/applicantmain"
+        android:id="@+id/hrmain"
         android:title="Home"
         android:icon="@drawable/home" />
     <item
-        android:id="@+id/savedjob"
+        android:id="@+id/jobmanager"
         android:title="Job Manager"
         android:icon="@drawable/list_job" />
     <item
-        android:id="@+id/appliedcv"
+        android:id="@+id/companymanager"
         android:title="Company Manager"
         android:icon="@drawable/company" />
     <item
-        android:id="@+id/receipt_Cv"
+        android:id="@+id/managercv"
         android:title="CV Manager"
         android:icon="@drawable/receipt_cv" />
 </menu>
