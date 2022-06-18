@@ -35,10 +35,6 @@ const UpdateJob = async (req, res) => {
 
 }
 
-const GetJobByIdSkillJob = async (req, res) => {
-
-}
-
 const AddJob = async (req, res) => {
 
 }
@@ -56,7 +52,6 @@ module.exports = {
     GetSkillJobbyIdJob,
     GetJobbyIdSkill,
     UpdateJob,
-    GetJobByIdSkillJob,
     AddJob,
     GetJobBySalary,
     GetJobByName

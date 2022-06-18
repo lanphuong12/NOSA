@@ -8,7 +8,7 @@ const dao = require('../Dao/Connection')
 const GetUserById = async (req, res) => {
     const UserAcc = await dao.sequelize.query("exec GetUserById @idUser= '" + req.body.id_user +  "'", { raw: true, nest: true })
 
-        return res.status(200).send(UserAcc[0])
+    return res.status(200).send(UserAcc[0])
 }
 
 const GetAllDanhmucnganhnghe = async (req, res) => {

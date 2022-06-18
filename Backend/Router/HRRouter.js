@@ -5,11 +5,11 @@ var router = express.Router();
 const hrController = require("../src/HRController")
     //handles post request with url /api/login
 router.post('/GetApplicant', hrController.GetApplicantforHr);
-router.get('/GetJobCreated', hrController.GetJobCreated);
-router.get('/GetCompanyCreated', hrController.GetCompanyCreated);
-router.get('/GetAllCVApplied', hrController.GetAllCVApplied);
-router.get('/GetAllCVAppliedByIdJob', hrController.GetAllCVAppliedByIdJob);
+router.post('/GetJobCreated', hrController.GetJobCreated);
+router.post('/GetCompanyCreated', hrController.GetCompanyCreated);
+router.post('/GetAllCVApplied', hrController.GetAllCVApplied);
+router.post('/GetAllCVAppliedByIdJob', hrController.GetAllCVAppliedByIdJob);
 router.post('/UpdateStatusCV', hrController.UpdateStatusCV);
-router.get('/GetCVbyStatus', hrController.GetCVbyStatus);
+router.post('/GetCVbyStatus', hrController.GetCVbyStatus);
 // export router to use in index file
 module.exports = router;
