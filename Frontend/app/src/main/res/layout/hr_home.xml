@@ -7,22 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".HR.HrHomeActivity">
 
-    <FrameLayout
-        android:id="@+id/frame_container"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/navigation"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/backgroud_color"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:itemIconSize="28dp"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/hr_bottomnav" />
+        <FrameLayout
+            android:id="@+id/frame_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/navigation"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/backgroud_color"
+            app:itemIconTint="@color/black"
+            app:itemTextColor="@color/black"
+            app:itemIconSize="28dp"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/hr_bottomnav" />
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

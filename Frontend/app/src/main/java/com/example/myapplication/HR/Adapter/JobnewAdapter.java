@@ -15,22 +15,22 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class JobnewAdapter extends BaseAdapter {
-    ArrayList<Jobnew> arrayJobToApplicant;
+    ArrayList<Jobnew> arrayJobCreated;
     private LayoutInflater mInflater;
 
-    public JobnewAdapter(ArrayList<Jobnew> arrJobCreated, Context Applicant_Fragment_main ) {
-        this.arrayJobToApplicant = arrJobCreated;
-        this.mInflater = LayoutInflater.from(Applicant_Fragment_main);
+    public JobnewAdapter(ArrayList<Jobnew> arrJobCreated, Context fragment ) {
+        this.arrayJobCreated = arrJobCreated;
+        this.mInflater = LayoutInflater.from(fragment);
     }
 
     @Override
     public int getCount() {
-        return arrayJobToApplicant.size();
+        return arrayJobCreated.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return arrayJobToApplicant.get(position);
+        return arrayJobCreated.get(position);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class JobnewAdapter extends BaseAdapter {
 
     public class ViewHolder{
         ImageView logoCompany;
-        TextView nameCompany, nameJob, soluongCVapplied, salary, amount, styleJob, status ;
+        TextView nameCompany, nameJob, soluongCVapplied, salary, amount, styleJob, status, dateexpery ;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class JobnewAdapter extends BaseAdapter {
         if (convertView == null){
             viewHolder = new JobnewAdapter.ViewHolder();
             convertView = mInflater.inflate(R.layout.adapter,null);
-            viewHolder.logoCompany = (ImageView) convertView.findViewById(R.id.logoCompany);
+            viewHolder.logoCompany = (ImageView) convertView.findViewById(R.id.imgv_logocompany);
             viewHolder.nameCompany = (TextView) convertView.findViewById(R.id.tv_namecompany);
             viewHolder.nameJob = (TextView) convertView.findViewById(R.id.tv_namejob);
             viewHolder.soluongCVapplied = (TextView) convertView.findViewById(R.id.tv_amountCVapplied);
@@ -57,7 +57,7 @@ public class JobnewAdapter extends BaseAdapter {
             viewHolder.amount = (TextView) convertView.findViewById(R.id.tv_soluongtuyendung);
             viewHolder.styleJob = (TextView) convertView.findViewById(R.id.tv_timework);
             viewHolder.status = (TextView) convertView.findViewById(R.id.trangthaiCV);
-
+            viewHolder.dateexpery = (TextView) convertView.findViewById(R.id.tv_experidate);
             convertView.setTag(viewHolder);
 
         }
@@ -71,15 +71,17 @@ public class JobnewAdapter extends BaseAdapter {
                 .into(viewHolder.logoCompany);
         viewHolder.nameCompany.setText(congviec.getTencty());
         viewHolder.nameJob.setText(congviec.getTenjob());
-        viewHolder.soluongCVapplied.setText("Đã có "+ congviec.getAmountCVApplied() +"CV ứng tuyển");
+        viewHolder.soluongCVapplied.setText("Đã có "+ congviec.getAmountCVApplied() +" CV ứng tuyển");
         viewHolder.salary.setText("Lương: "+ congviec.getMinsalary() + " - " + congviec.getMaxsalary());
         viewHolder.amount.setText("Số lượng tuyển dụng: "+ congviec.getSoluongtuyendung());
         viewHolder.styleJob.setText("Loại hình cv: "+ congviec.getTenloaihinhcv());
+        viewHolder.styleJob.setText("Loại hình cv: "+ congviec.getTenloaihinhcv());
+        viewHolder.dateexpery.setText("Ngày hết hạn: "+ congviec.getNgayhethan());
         if (congviec.getTrangthai() == 0){
-            viewHolder.styleJob.setText("Đã hết hạn");
+            viewHolder.status.setText("Đã hết hạn");
         }
         if (congviec.getTrangthai() == 1){
-            viewHolder.styleJob.setText("Còn hạn");
+            viewHolder.status.setText("Còn hạn");
         }
         return convertView;
     }

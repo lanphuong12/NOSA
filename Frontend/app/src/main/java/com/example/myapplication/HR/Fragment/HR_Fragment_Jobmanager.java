@@ -10,11 +10,15 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.myapplication.Applicant.Adapter.JobtoApplicantAdapter;
+import com.example.myapplication.Applicant.JobDetailActivity;
 import com.example.myapplication.HR.Adapter.CandidateAdapter;
 import com.example.myapplication.HR.Adapter.JobnewAdapter;
+import com.example.myapplication.HR.GetAllCVbyIdJob;
 import com.example.myapplication.HR.HrHomeActivity;
 import com.example.myapplication.LoginActivity;
 import com.example.myapplication.Model.Job;
@@ -50,7 +54,7 @@ public class HR_Fragment_Jobmanager extends Fragment {
         initUI();
 
         Toolbar TopActivityToolbar = mView.findViewById(R.id.toolbar);
-        TopActivityToolbar.setTitle("HR main");
+        TopActivityToolbar.setTitle("Quản lý công việc");
         TopActivityToolbar.inflateMenu(R.menu.log_out);
 
         // and finally set click listener
@@ -71,6 +75,16 @@ public class HR_Fragment_Jobmanager extends Fragment {
 
         getAllJobCreated(User);
 
+        lv_job.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), GetAllCVbyIdJob.class);
+                intent.putExtra("idUserAcc", User);
+                intent.putExtra("id_job", mang_job.get(position).getIdCongviec());
+                startActivity(intent);
+            }
+        });
+
         return mView;
     }
 
@@ -90,7 +104,7 @@ public class HR_Fragment_Jobmanager extends Fragment {
 
             @Override
             public void onFailure(Call<List<Jobnew>> call, Throwable t) {
-
+                Toast.makeText(hrHomeActivity, "Lấy dữ liệu thất bại!", Toast.LENGTH_SHORT).show();
             }
         });
     }

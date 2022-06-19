@@ -112,6 +112,27 @@
                     android:textColor="#C6000000"
                     android:textSize="5pt" />
             </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/list_job"
+                    android:backgroundTint="#C6000000"/>
+
+                <TextView
+                    android:id="@+id/tv_experidate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Ngày đến hạn"
+                    android:textColor="#C6000000"
+                    android:textSize="5pt" />
+            </TableRow>
             <TextView
                 android:id="@+id/tv_amountCVapplied"
                 android:layout_width="wrap_content"
@@ -123,6 +144,7 @@
                 android:text="Số lượng CV đã apply"
                 android:textStyle="bold|italic" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/trangthaiCV"
             android:layout_width="wrap_content"

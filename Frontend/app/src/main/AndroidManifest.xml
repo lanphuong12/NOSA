@@ -44,6 +44,9 @@
             android:name=".HR.HrHomeActivity"
             android:exported="false" />
         <activity
+            android:name=".HR.GetAllCVbyIdJob"
+            android:exported="false" />
+        <activity
             android:name=".Applicant.ApplicantHomeActivity"
             android:exported="false" />
         <activity
