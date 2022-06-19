@@ -105,6 +105,10 @@ public interface Dataservice {
     Call<List<Job>> GetSavedJob(@Field("id_user") Integer idUser);
 
     @FormUrlEncoded
+    @POST("job/GetJobByName")
+    Call<List<Job>> SearchJob(@Field("tenjob") String tenjob);
+
+    @FormUrlEncoded
     @POST("applicant/GetAppliedJob")
     Call<List<AppliedJob>> GetAppliedJob(@Field("id_user") Integer idUser);
 

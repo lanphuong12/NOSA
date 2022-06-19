@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,7 +35,7 @@ import retrofit2.Response;
 
 public class Applicant_Fragment_main extends Fragment {
 
-    AutoCompleteTextView autoCompleteTextView;
+    EditText edt_search;
     ImageButton bt_search;
     ListView lv_jobtoapplicant;
     JobtoApplicantAdapter jobtoApplicantAdapter;
@@ -108,11 +109,41 @@ public class Applicant_Fragment_main extends Fragment {
     }
 
     private void initUI() {
-        autoCompleteTextView = mView.findViewById(R.id.edt_search_word);
+        edt_search = mView.findViewById(R.id.edt_tenjob);
         bt_search = mView.findViewById(R.id.imgbt_search);
         lv_jobtoapplicant = mView.findViewById(R.id.lv_jobtoApplicant);
         mang_job = new ArrayList<>();
         jobtoApplicantAdapter = new JobtoApplicantAdapter(mang_job, getActivity());
         lv_jobtoapplicant.setAdapter(jobtoApplicantAdapter);
+    }
+
+    public void Search(View view) {
+        String search = edt_search.getText().toString();
+        if (search.trim().length() == 0){
+            Toast.makeText(mAppHomActivity, "Hãy nhập tên công việc bạn muốn tìm kiếm!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            mang_job.clear();
+            jobtoApplicantAdapter.notifyDataSetChanged();
+            Dataservice dataservice = APIService.getService();
+            Call<List<Job>> callback = dataservice.SearchJob(search);
+            callback.enqueue(new Callback<List<Job>>() {
+                @Override
+                public void onResponse(Call<List<Job>> call, Response<List<Job>> response) {
+                    ArrayList<Job> job = (ArrayList<Job>) response.body();
+                    //Log.d("api",response.toString());
+                    for (Job cv: job){
+                        mang_job.add(cv);
+                    }
+                    jobtoApplicantAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFailure(Call<List<Job>> call, Throwable t) {
+                    Toast.makeText(mAppHomActivity, "Tìm kiếm thất bại! Vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
     }
 }

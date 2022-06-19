@@ -18,28 +18,28 @@
             android:minHeight="?attr/actionBarSize"
             android:background="@drawable/button_selector"
             android:id="@+id/toolbar"/>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:padding="5dp">
-            <AutoCompleteTextView
-                android:layout_width="280dp"
+
+            <EditText
+                android:id="@+id/edt_tenjob"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nhập từ cần tìm"
-                android:completionThreshold="1"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:id="@+id/edt_search_word"/>
+                android:layout_toLeftOf="@+id/imgbt_search"
+                android:hint="Nhập tên công việc ở đây" />
 
             <ImageButton
-                android:layout_marginLeft="10dp"
+                android:id="@+id/imgbt_search"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/search"
-                android:id="@+id/imgbt_search"/>
+                android:layout_alignParentRight="true"
+                android:onClick="Search"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/search" />
 
-        </LinearLayout>
+        </RelativeLayout>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

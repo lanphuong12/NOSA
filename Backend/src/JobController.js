@@ -44,7 +44,10 @@ const GetJobBySalary = async (req, res) => {
 }
 
 const GetJobByName = async (req, res) => {
-
+    const job= await dao.sequelize.query(
+        "exec SearchJobByName @name= '" + req.body.tenjob +  "'" , { raw: true, nest: true }
+    )
+    return res.status(200).send(job)
 }
 
 module.exports = {
