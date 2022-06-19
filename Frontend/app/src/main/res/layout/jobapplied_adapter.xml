@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/cardview"
     android:layout_margin="5dp"
-    android:elevation="5dp"
-    tools:context=".Applicant.Adapter.JobApplied_adapter">
+    android:elevation="5dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

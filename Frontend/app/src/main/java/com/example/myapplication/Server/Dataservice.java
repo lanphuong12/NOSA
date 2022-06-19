@@ -159,7 +159,7 @@ public interface Dataservice {
 
     @FormUrlEncoded
     @POST("hr/GetJobCreated")
-    Call<List<Job>> GetAllJobCreatedbyidHR(@Field("id_user") Integer idUser);
+    Call<List<Jobnew>> GetAllJobCreatedbyidHR(@Field("id_user") Integer idUser);
 
     @FormUrlEncoded
     @POST("hr/GetCompanyCreated")

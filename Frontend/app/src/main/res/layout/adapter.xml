@@ -1,29 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:elevation="5dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="5dp">
+    android:id="@+id/cardview"
+    android:layout_margin="5dp"
+    android:elevation="5dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/view1"
+            android:orientation="vertical">
+            <TableRow
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgv_logocompany"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/logonosa"
+                    android:textSize="8pt" />
+
+                <TextView
+                    android:id="@+id/tv_namecompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Tên công ty hiển thị ở đây"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="8pt" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_namejob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên job hiển thị ở đây!"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_500"
+                    android:textSize="9pt" />
+            </TableRow>
+            <TableRow
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/salary"
+                    android:backgroundTint="#C6000000"/>
+
+                <TextView
+                    android:id="@+id/tv_salary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Lương hiển thị ở đây"
+                    android:textColor="#C6000000"
+                    android:textSize="5pt" />
+            </TableRow>
+            <TableRow
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/list_skill"
+                    android:backgroundTint="#C6000000"/>
+
+                <TextView
+                    android:id="@+id/tv_soluongtuyendung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Số lượng tuyển dụng"
+                    android:textColor="#C6000000"
+                    android:textSize="5pt" />
+            </TableRow>
+            <TableRow
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/people"
+                    android:backgroundTint="#C6000000"/>
+
+                <TextView
+                    android:id="@+id/tv_timework"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Loại hình công việc - Fulltime/Pathtime.."
+                    android:textColor="#C6000000"
+                    android:textSize="5pt" />
+            </TableRow>
+            <TextView
+                android:id="@+id/tv_amountCVapplied"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="#FF0000"
+                android:layout_below="@id/view1"
+                android:gravity="center"
+                android:text="Số lượng CV đã apply"
+                android:textStyle="bold|italic" />
+        </LinearLayout>
         <TextView
-            android:gravity="center"
+            android:id="@+id/trangthaiCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22dp"
-            android:background="@drawable/button1"
-            android:text="Ngành nghề quan tâm"
-            android:textStyle="italic"
-            android:textAllCaps="false"
-            android:id="@+id/tv_adapter"/>
-    </LinearLayout>
+            android:layout_below="@id/view1"
+            android:layout_alignRight="@id/view1"
+            android:layout_centerInParent="true"
+            android:background="#D4C1FDAB"
+            android:gravity="center"
+            android:text="trạng thái của Job applied"
+            android:textStyle="bold|italic" />
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

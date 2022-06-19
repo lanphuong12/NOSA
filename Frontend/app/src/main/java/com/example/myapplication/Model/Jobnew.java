@@ -10,6 +10,9 @@ public class Jobnew implements Serializable {
     @SerializedName("id_congviec")
     @Expose
     private Integer idCongviec;
+    @SerializedName("AmountCVApplied")
+    @Expose
+    private Integer amountCVApplied;
     @SerializedName("tenjob")
     @Expose
     private String tenjob;
@@ -28,9 +31,9 @@ public class Jobnew implements Serializable {
     @SerializedName("tencty")
     @Expose
     private String tencty;
-    @SerializedName("diachicty")
+    @SerializedName("ngayhethan")
     @Expose
-    private String diachicty;
+    private String ngayhethan;
     @SerializedName("logo")
     @Expose
     private String logo;
@@ -44,6 +47,14 @@ public class Jobnew implements Serializable {
 
     public void setIdCongviec(Integer idCongviec) {
         this.idCongviec = idCongviec;
+    }
+
+    public Integer getAmountCVApplied() {
+        return amountCVApplied;
+    }
+
+    public void setAmountCVApplied(Integer amountCVApplied) {
+        this.amountCVApplied = amountCVApplied;
     }
 
     public String getTenjob() {
@@ -94,12 +105,12 @@ public class Jobnew implements Serializable {
         this.tencty = tencty;
     }
 
-    public String getDiachicty() {
-        return diachicty;
+    public String getNgayhethan() {
+        return ngayhethan;
     }
 
-    public void setDiachicty(String diachicty) {
-        this.diachicty = diachicty;
+    public void setNgayhethan(String ngayhethan) {
+        this.ngayhethan = ngayhethan;
     }
 
     public String getLogo() {
@@ -117,5 +128,4 @@ public class Jobnew implements Serializable {
     public void setTrangthai(Integer trangthai) {
         this.trangthai = trangthai;
     }
-
 }
