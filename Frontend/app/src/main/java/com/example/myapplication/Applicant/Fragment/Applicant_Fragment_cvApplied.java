@@ -1,33 +1,31 @@
 package com.example.myapplication.Applicant.Fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Applicant.Adapter.AlliedJobAdapter;
-import com.example.myapplication.Applicant.Adapter.JobtoApplicantAdapter;
 import com.example.myapplication.Applicant.ApplicantHomeActivity;
-import com.example.myapplication.Applicant.CVDetailActivity;
-import com.example.myapplication.Applicant.JobDetailActivity;
-import com.example.myapplication.LoginActivity;
+import com.example.myapplication.HR.GetAllCVbyIdJob;
 import com.example.myapplication.Model.AppliedJob;
-import com.example.myapplication.Model.Job;
 import com.example.myapplication.R;
 import com.example.myapplication.Server.APIService;
 import com.example.myapplication.Server.Dataservice;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,12 +85,21 @@ public class Applicant_Fragment_cvApplied extends Fragment {
                 return false;
             }
         });
+
+        lv_appliedJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DialogCVDetail(mang_job.get(position));
+            }
+        });
+
         return mView;
     }
 
 
     private void getDataAppliedJobbyStatus(int User, int status, String trangthai){
         mang_job.clear();
+        AppliedJobAdapter.notifyDataSetChanged();
         Dataservice dataservice = APIService.getService();
         Call<List<AppliedJob>> callback = dataservice.GetAppliedJobByStatus(User, status);
         callback.enqueue(new Callback<List<AppliedJob>>() {
@@ -139,6 +146,37 @@ public class Applicant_Fragment_cvApplied extends Fragment {
             }
         });
 
+    }
+
+    private void DialogCVDetail( AppliedJob appliedJob){
+
+        Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.cv_detail);
+        dialog.show();
+
+        ImageView logoCompany = (ImageView) dialog.findViewById(R.id.imgv_logocompany);
+        TextView nameCompany = (TextView) dialog.findViewById(R.id.tv_namecompany);
+        TextView nameJob = (TextView) dialog.findViewById(R.id.tv_namejob);
+        TextView address = (TextView) dialog.findViewById(R.id.tv_addresscompany);
+        TextView salary = (TextView) dialog.findViewById(R.id.tv_salary);
+        TextView date = (TextView) dialog.findViewById(R.id.tv_datesentCV);
+        ImageView CV = (ImageView) dialog.findViewById(R.id.img_cv);
+
+        Picasso.get().load(appliedJob.getLogo())
+                .placeholder(R.drawable.noimg)
+                .error(R.drawable.errorimg)
+                .into(logoCompany);
+        nameCompany.setText(appliedJob.getTencty());
+        nameJob.setText(appliedJob.getTenjob());
+        address.setText(appliedJob.getDiachicty());
+        salary.setText(appliedJob.getMinsalary() + " - " + appliedJob.getMaxsalary());
+        date.setText(appliedJob.getNgaynopcv());
+
+        Picasso.get().load(appliedJob.getCv())
+                .placeholder(R.drawable.noimg)
+                .error(R.drawable.errorimg)
+                .into(CV);
+        dialog.setCanceledOnTouchOutside(true);
     }
 
     private void initUI() {

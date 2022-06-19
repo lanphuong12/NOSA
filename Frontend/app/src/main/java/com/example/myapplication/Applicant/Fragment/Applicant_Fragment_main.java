@@ -62,13 +62,13 @@ public class Applicant_Fragment_main extends Fragment {
         TopActivityToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.logout:
                         Intent intent = new Intent(getActivity(), LoginActivity.class);
                         startActivity(intent);
                         break;
-                    default:break;
+                    default:
+                        break;
                 }
                 return false;
             }
@@ -83,6 +83,41 @@ public class Applicant_Fragment_main extends Fragment {
                 startActivity(intent);
             }
         });
+        bt_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String search = edt_search.getText().toString();
+                if (search.trim().length() == 0) {
+                    Toast.makeText(mAppHomActivity, "Hãy nhập tên công việc bạn muốn tìm kiếm!", Toast.LENGTH_SHORT).show();
+                } else {
+                    mang_job.clear();
+                    jobtoApplicantAdapter.notifyDataSetChanged();
+                    Dataservice dataservice = APIService.getService();
+                    Call<List<Job>> callback = dataservice.SearchJob(search);
+                    callback.enqueue(new Callback<List<Job>>() {
+                        @Override
+                        public void onResponse(Call<List<Job>> call, Response<List<Job>> response) {
+                            ArrayList<Job> job = (ArrayList<Job>) response.body();
+                            if (job.size() == 0){
+                                Toast.makeText(mAppHomActivity, "Không tìm thấy công việc có tên " + search, Toast.LENGTH_SHORT).show();
+                                getDataJobtoApplicant(User);
+                            }
+                            else {
+                                for (Job cv : job) {
+                                    mang_job.add(cv);
+                                }
+                                jobtoApplicantAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Job>> call, Throwable t) {
+                            Toast.makeText(mAppHomActivity, "Tìm kiếm thất bại! Vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
         return mView;
     }
 
@@ -94,7 +129,7 @@ public class Applicant_Fragment_main extends Fragment {
             public void onResponse(Call<List<Job>> call, Response<List<Job>> response) {
                 ArrayList<Job> job = (ArrayList<Job>) response.body();
                 //Log.d("api",response.toString());
-                for (Job cv: job){
+                for (Job cv : job) {
                     mang_job.add(cv);
                 }
                 jobtoApplicantAdapter.notifyDataSetChanged();
@@ -117,33 +152,4 @@ public class Applicant_Fragment_main extends Fragment {
         lv_jobtoapplicant.setAdapter(jobtoApplicantAdapter);
     }
 
-    public void Search(View view) {
-        String search = edt_search.getText().toString();
-        if (search.trim().length() == 0){
-            Toast.makeText(mAppHomActivity, "Hãy nhập tên công việc bạn muốn tìm kiếm!", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            mang_job.clear();
-            jobtoApplicantAdapter.notifyDataSetChanged();
-            Dataservice dataservice = APIService.getService();
-            Call<List<Job>> callback = dataservice.SearchJob(search);
-            callback.enqueue(new Callback<List<Job>>() {
-                @Override
-                public void onResponse(Call<List<Job>> call, Response<List<Job>> response) {
-                    ArrayList<Job> job = (ArrayList<Job>) response.body();
-                    //Log.d("api",response.toString());
-                    for (Job cv: job){
-                        mang_job.add(cv);
-                    }
-                    jobtoApplicantAdapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void onFailure(Call<List<Job>> call, Throwable t) {
-                    Toast.makeText(mAppHomActivity, "Tìm kiếm thất bại! Vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
-    }
 }

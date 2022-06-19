@@ -34,6 +34,9 @@ public class AppliedJob implements Serializable {
     @SerializedName("logo")
     @Expose
     private String logo;
+    @SerializedName("CV")
+    @Expose
+    private String cv;
     @SerializedName("trangthai")
     @Expose
     private Integer trangthai;
@@ -108,6 +111,14 @@ public class AppliedJob implements Serializable {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public String getCv() {
+        return cv;
+    }
+
+    public void setCv(String cv) {
+        this.cv = cv;
     }
 
     public Integer getTrangthai() {

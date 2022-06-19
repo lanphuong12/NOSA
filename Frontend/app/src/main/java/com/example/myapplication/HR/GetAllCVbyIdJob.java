@@ -142,6 +142,7 @@ public class GetAllCVbyIdJob extends AppCompatActivity {
 
     private void GetAllCVappliedByIdJob(int idJob) {
         mangCV.clear();
+        alliedJobAdapter.notifyDataSetChanged();
         Dataservice dataservice = APIService.getService();
         Call<List<AppliedJob>> callback = dataservice.GetCVByIdJob(idJob);
         callback.enqueue(new Callback<List<AppliedJob>>() {
