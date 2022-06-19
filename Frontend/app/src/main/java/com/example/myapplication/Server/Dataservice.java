@@ -2,6 +2,7 @@ package com.example.myapplication.Server;
 
 import com.example.myapplication.Model.AppliedJob;
 import com.example.myapplication.Model.Company;
+import com.example.myapplication.Model.CompanyHR;
 import com.example.myapplication.Model.Danhmucnganhnghe;
 import com.example.myapplication.Model.ExpUser;
 import com.example.myapplication.Model.Job;
@@ -163,7 +164,7 @@ public interface Dataservice {
 
     @FormUrlEncoded
     @POST("hr/GetCompanyCreated")
-    Call<List<Company>> GetAllCompanyCreatedbyidHR(@Field("id_user") Integer idUser);
+    Call<List<CompanyHR>> GetAllCompanyCreatedbyidHR(@Field("id_user") Integer idUser);
 
     @FormUrlEncoded
     @POST("hr/GetAllCVApplied")
@@ -184,6 +185,6 @@ public interface Dataservice {
                                                           @Field("id_user") Integer idUser);
 
     @FormUrlEncoded
-    @POST("hr/GetAllCVAppliedByIdJob")
+    @POST("hr/GetJobByIdCompany")
     Call<List<Jobnew>> GetJobByIdCty(@Field("id_congty") Integer cty);
 }

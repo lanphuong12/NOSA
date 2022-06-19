@@ -35,6 +35,9 @@
             android:name=".HR.InfoCandidateActivity"
             android:exported="false" />
         <activity
+            android:name=".HR.GetAllJobByIdCompany"
+            android:exported="false" />
+        <activity
             android:name=".Applicant.Apply_to_job"
             android:exported="false" />
         <activity
